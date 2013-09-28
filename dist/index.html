@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Call of Duty Bro-Larm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Custom styles for Signin -->
+    <link href="css/signin.css" rel="stylesheet"/>
+    <!-- Custom styles for Todos -->
+    <link href="css/todos.css" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="container" id="brolarmapp">
+
+      <form class="form-signin">
+
+        <!-- Step 1 -->
+        <h2 class="form-signin-heading">Sign in to Xbox LIVE</h2>
+        <input type="text" class="form-control" id="gamertag" placeholder="Gamertag" autofocus>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><div class="row">
+
+      </form>
+
+    </div> <!-- /container -->
+
+    <div id="todoapp">
+
+      <header>
+        <h1>Todos</h1>
+        <input id="new-todo" type="text" placeholder="What needs to be done?">
+      </header>
+
+      <section id="main">
+        <input id="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul id="todo-list"></ul>
+      </section>
+
+      <footer>
+        <a id="clear-completed">Clear completed</a>
+        <div id="todo-count"></div>
+      </footer>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Todo app -->
+    <script src="js/json2.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/backbone.js"></script>
+    <script src="js/backbone.localStorage.js"></script>
+    <script src="js/brolarm.js"></script>
+
+    <!-- Templates -->
+    <script type="text/template" id="item-template">
+      <div class="view">
+        <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+        <label><%- title %></label>
+        <a class="destroy"></a>
+      </div>
+      <input class="edit" type="text" value="<%- title %>" />
+    </script>
+
+    <script type="text/template" id="stats-template">
+      <% if (done) { %>
+        <a id="clear-completed">Clear <%= done %> completed <%= done == 1 ? 'item' : 'items' %></a>
+      <% } %>
+      <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
+    </script>
+
+  </body>
+</html>
