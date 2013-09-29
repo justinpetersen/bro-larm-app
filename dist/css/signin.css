@@ -35,7 +35,23 @@ body {
 }
 
 .gamer-profile-container {
-  max-width: 330px;
+  width: 330px;
   padding: 15px;
   margin: 0 auto;
+	list-style: none;
+}
+
+#gamer-profile-container {
+  display: none;
+}
+
+#friends-heading {
+  display: none;
+  padding: 15px;
+  width: 330px;
+  margin: 0 auto;
+}
+
+.gamer-profile {
+  clear: both;
 }

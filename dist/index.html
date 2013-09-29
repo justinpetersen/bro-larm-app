@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/signin.css"/>
 		<link rel="stylesheet" href="css/ladda-themeless.min.css">
-    <!--link href="css/todos.css" rel="stylesheet"/-->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -17,8 +16,7 @@
 
     <div class="container" id="bro-larm-app">
       <div class="form-signin">
-        <!-- Step 1 -->
-        <h2 class="form-signin-heading">Sign in to Xbox LIVE</h2>
+        <h2 class="form-heading">Sign in to Xbox LIVE</h2>
 				<div class="form-group">
         	<input type="text" class="form-control" id="gamertag" placeholder="Gamertag" autofocus>
 	        <!--label class="checkbox">
@@ -29,34 +27,16 @@
 				<button id="form-submit" class="btn btn-lg btn-primary btn-block ladda-button" data-style="slide-up" disabled><span class="ladda-label">Sign in</span></button>
       </div> <!-- /form-signin -->	
 			<div id="gamer-profile-container" class="gamer-profile-container"></div>
+      <h2 id="friends-heading" class="form-heading">Friends</h2>
+			<ul id="friends-container" class="gamer-profile-container"></ul>
     </div> <!-- /container -->
-
-    <!--div id="todoapp">
-
-      <header>
-        <h1>Todos</h1>
-        <input id="new-todo" type="text" placeholder="What needs to be done?">
-      </header>
-
-      <section id="main">
-        <input id="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
-        <ul id="todo-list"></ul>
-      </section>
-
-      <footer>
-        <a id="clear-completed">Clear completed</a>
-        <div id="todo-count"></div>
-      </footer>
-
-    </div-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-	<script src="js/spin.min.js"></script>
-	<script src="js/ladda.min.js"></script>
+		<script src="js/spin.min.js"></script>
+		<script src="js/ladda.min.js"></script>
 
     <!-- Todo app -->
     <script src="js/json2.js"></script>
@@ -84,9 +64,9 @@
 
     <script type="text/template" id="gamer-profile-template">
       <div class="gamer-profile">
-				<img src="<%= avatar %>" class="thumbnail" />
-				<p><b><%= gamertag %></b></p>
-				<p><%= presence %></p>
+				<img src="<%= avatar %>" class="thumbnail pull-left" />
+				<b><%= gamertag %></b><br />
+				<%= presence %>
 			</div>
     </script>
 
