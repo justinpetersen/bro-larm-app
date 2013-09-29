@@ -64,7 +64,7 @@ $(function(){
   });
 
   // Create our global collection of **Todos**.
-  var Todos = new TodoList;
+  var Todos = new TodoList( );
 
   // Todo Item View
   // --------------
@@ -228,7 +228,31 @@ $(function(){
 
   });
 
-  var BroLarmModel = Backbone.Model.extend({
+  var GamerProfileView = Backbone.View.extend({
+    
+    template: _.template( $( '#gamer-profile-template' ).html( ) ),
+    
+    initialize: function( ) {
+      
+      console.log( 'GamerProfileView.initialize( )' );
+      
+      this.listenTo( this.model, 'change', this.render );
+      
+    },
+
+    render: function( ) {
+      
+      console.log( 'GamerProfileView.render( )' );
+      
+      this.$el.html( this.template( this.model.toJSON( ) ) );
+      
+      return this;
+      
+    }
+
+  });
+
+  var GamerProfileModel = Backbone.Model.extend({
 
     urlRoot: 'http://www.xboxleaders.com/api/2.0/profile.json',
 
@@ -240,62 +264,194 @@ $(function(){
 
     defaults: function( ) {
       return {
-        gamertag: ''
+        gamertag: '',
+        avatar: '',
+        presence: '',
+        online: false
       };
+    },
+
+    parse: function( response, options ) {
+
+      console.log( 'BroLarmModel.parse( )' );
+      return {
+        gamertag: response.data.gamertag,
+        avatar: response.data.avatar.tile,
+        presence: response.data.presence,
+        online: response.data.online
+      };
+
+    }
+
+  });
+
+  var FriendModel = Backbone.Model.extend({
+
+    urlRoot: 'http://www.xboxleaders.com/api/2.0/profile.json',
+
+    url: function( ) {
+
+      return this.urlRoot + '?gamertag=' + this.get( 'gamertag' );
+
+    },
+
+    defaults: function( ) {
+      return {
+        gamertag: '',
+        avatar: '',
+        presence: '',
+        online: false
+      };
+    },
+
+    parse: function( response, options ) {
+
+      console.log( 'FriendModel.parse( )' );
+      return {
+        gamertag: response.data.gamertag,
+        avatar: response.data.gamerpic.small,
+        presence: response.data.status,
+        online: response.data.online
+      };
+
+    }
+
+  });
+  
+  var FriendsList = Backbone.Collection.extend({
+
+    model: FriendModel,
+
+    urlRoot: 'http://www.xboxleaders.com/api/2.0/friends.json',
+
+    url: function( ) {
+
+      return this.urlRoot + '?gamertag=' + this.get( 'gamertag' );
+
     }
 
   });
 
   var BroLarmView = Backbone.View.extend({
 
-    model: BroLarmModel,
-
-    el: $( '#brolarmapp' ),
+    el: $( '#bro-larm-app' ),
 
     events: {
-      'keypress #gamertag': 'gamertagOnEnter'
+      'keyup #gamertag': 'onGamertagKeyPress',
+      'click #form-submit': 'onGamertagSubmit'
+    },
+
+    onGamertagKeyPress: function( e ) {
+
+      console.log( 'BroLarmView.onGamertagEnter( )' );
+      
+      // Validate the form on any key press
+      var valid = this.validateForm( );
+      
+      // If the enter key is pressed and the form is valid, then load the gamer profile
+      if ( e.keyCode == 13 && valid ) {
+        this.loadGamerProfile( this.input.val( ) );
+      }
+
+    },
+
+    onGamertagSubmit: function( e ) {
+
+      console.log( 'BroLarmView.onGamertagSubmit( )' );
+
+      this.loadGamerProfile( this.input.val( ) );
+
+    },
+
+    onModelChanged: function( e ) {
+
+      console.log( 'BroLarmView.onModelChanged( )' );
+      console.log( this.model.attributes );
+
+      this.stopLoader( );
+      this.renderGamerProfile( );
+
     },
 
     initialize: function( ) {
 
       console.log( 'BroLarmView.initialize( )' );
-      this.input = this.$( '#gamertag' );
+      
+      this.input = $( '#gamertag' );
+      this.laddaSubmit = Ladda.create( $( '#form-submit' )[ 0 ] );
+      this.listenTo( this.model, 'change', this.onModelChanged );
+      
+      this.validateForm( );
 
     },
 
     render: function( ) {
 
+      console.log( 'BroLarmView.render( )' );
       // TODO: Fill this in
       return this;
 
     },
+    
+    renderGamerProfile: function( ) {
 
-    gamertagOnEnter: function( e ) {
+      console.log( 'BroLarmView.renderGamerProfile( )' );
+      
+      var view = new GamerProfileView( { model: this.model } );
+      $( '#gamer-profile-container' ).html( view.render( ).el );
+      
+    },
+    
+    validateForm: function( ) {
+      
+      // Assume that the form entries are valid
+      var valid = true;
+      
+      // Check that the form entries are valid and disable/enable the submit button
+      if ( this.input.val( ).length < 3 ) {
+        valid = false;
+        $( '#form-submit' ).attr( 'disabled', 'disabled' );
+      } else {
+        $( '#form-submit' ).removeAttr('disabled');
+      }
+      
+      return valid;
+      
+    },
+    
+    loadGamerProfile: function( gamertag ) {
 
-      console.log( 'BroLarmView.gamertagOnEnter( )' );
-
-      if (e.keyCode != 13) return;
-      if (!this.input.val()) return;
-
-      // Prevent form submission on enter
-      e.preventDefault( );
-
+      // Reset the gamer profile to its defaults
+      this.model.set( this.model.defaults( ) );
+      
       // Set the user's gamertag in the model
-      this.model.set( 'gamertag', this.input.val( ) );
+      this.model.set( 'gamertag', gamertag );
 
       // Fetch the user profile
+      this.startLoader( );
       this.model.fetch( );
+      
+    },
 
-      // this.input.val( '' );
+    startLoader: function( ) {
+
+      $( '#gamertag' ).attr( 'disabled', 'disabled' );
+      this.laddaSubmit.start( );
+
+    },
+
+    stopLoader: function( ) {
+
+      $( '#gamertag' ).removeAttr('disabled');
+      this.laddaSubmit.stop( );
 
     }
 
   });
 
-  // Finally, we kick things off by creating the **App**.
-  var App = new AppView;
+  // var App = new AppView( );
 
-  var model = new BroLarmModel;
+  var model = new GamerProfileModel( );
   var view = new BroLarmView( { model: model } );
 
 });
