@@ -4,8 +4,12 @@ body {
   background-color: #eee;
 }
 
+p {
+  font-size: 13px;
+}
+
 .form-signin {
-  max-width: 330px;
+  width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
@@ -58,4 +62,11 @@ body {
 
 .avatar {
   margin-right: 4px;
+}
+
+.stats-copy {
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -25,10 +25,10 @@
 				</div>
         <!--button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button-->
 				<button id="form-submit" class="btn btn-lg btn-primary btn-block ladda-button" data-style="slide-up" disabled><span class="ladda-label">Sign in</span></button>
-      </div> <!-- /form-signin -->	
+      </div> <!-- /form-signin -->
 			<div id="gamer-profile-container" class="gamer-profile-container"></div>
       <h2 id="friends-heading" class="form-heading">Friends</h2>
-			<ul id="friends-container" class="gamer-profile-container"></ul>
+			<ul id="friends-container" class="gamer-profile-container list-group"></ul>
     </div> <!-- /container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -65,8 +65,10 @@
     <script type="text/template" id="gamer-profile-template">
       <div class="gamer-profile">
 				<img src="<%= avatar %>" class="img-rounded pull-left avatar" />
-				<h5><%= gamertag %></h5>
-				<h6><%= presence %></h6>
+        <p class="stats-copy">
+  				<b><%= gamertag %></b><br />
+  				<small><%= presence %></small>
+        </p>
 			</div>
     </script>
 
