@@ -55,3 +55,7 @@ body {
 .gamer-profile {
   clear: both;
 }
+
+.avatar {
+  margin-right: 4px;
+}
