@@ -111,17 +111,25 @@ $(function(){
 
   });
 
-  var GamerProfileView = Backbone.View.extend({
+  var GamerProfileMainView = Backbone.View.extend({
 
-    template: _.template( $( '#gamer-profile-template' ).html( ) ),
+    template: _.template( $( '#gamer-profile-main-template' ).html( ) ),
 
-    tagName: 'li',
+    events: {
+      'click #btn-sign-out': 'onSignOut'
+    },
 
-    className: 'list-group-item',
+    onSignOut: function( ) {
+
+      console.log( 'GamerProfileMainView.onSignOut( )' );
+
+      this.trigger( 'onSignOut');
+
+    },
 
     initialize: function( ) {
 
-      console.log( 'GamerProfileView.initialize( )' );
+      console.log( 'GamerProfileMainView.initialize( )' );
 
       this.listenTo( this.model, 'change', this.render );
 
@@ -129,7 +137,35 @@ $(function(){
 
     render: function( ) {
 
-      console.log( 'GamerProfileView.render( )' );
+      console.log( 'GamerProfileMainView.render( )' );
+
+      this.$el.html( this.template( this.model.toJSON( ) ) );
+
+      return this;
+
+    }
+
+  });
+
+  var GamerProfileItemView = Backbone.View.extend({
+
+    template: _.template( $( '#gamer-profile-item-template' ).html( ) ),
+
+    tagName: 'li',
+
+    className: 'list-group-item',
+
+    initialize: function( ) {
+
+      console.log( 'GamerProfileItemView.initialize( )' );
+
+      this.listenTo( this.model, 'change', this.render );
+
+    },
+
+    render: function( ) {
+
+      console.log( 'GamerProfileItemView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
@@ -170,13 +206,21 @@ $(function(){
 
     },
 
+    onSignOut: function( e ) {
+
+      console.log( 'BroLarmView.onSignOut( )' );
+
+      this.signOut( );
+
+    },
+
     onModelChanged: function( e ) {
 
       console.log( 'BroLarmView.onModelChanged( )' );
       console.log( this.model.attributes );
 
       this.stopLoader( );
-      this.renderGamerProfile( );
+      this.checkShowGamerProfile( );
       this.clearFriends( );
 
     },
@@ -195,32 +239,30 @@ $(function(){
 
       this.input = $( '#gamertag' );
       this.laddaSubmit = Ladda.create( $( '#form-submit' )[ 0 ] );
+
+      this.gamerProfileView = new GamerProfileMainView( { model: this.model } );
+      $( '#gamer-profile-container' ).html( this.gamerProfileView.render( ).el );
+
+      // Set up events
       this.listenTo( this.model, 'change', this.onModelChanged );
       this.listenTo( this.model.friendsCollection, 'add', this.onFriendAdded );
+      this.listenTo( this.gamerProfileView, 'onSignOut', this.onSignOut );
 
+      // Disable "Sign in" button until the user enters a gamertag
       this.validateForm( );
 
     },
 
-    render: function( ) {
-
-      console.log( 'BroLarmView.render( )' );
-      // TODO: Fill this in
-      return this;
-
-    },
-
-    renderGamerProfile: function( ) {
+    checkShowGamerProfile: function( ) {
 
       console.log( 'BroLarmView.renderGamerProfile( )' );
 
-      var view = new GamerProfileView( { model: this.model } );
-      $( '#gamer-profile-container' ).html( view.render( ).el );
-
       if ( this.model.get( 'avatar' ) != '' ) {
         $( '#gamer-profile-container' ).show( );
+        $( '#form-signin' ).hide( );
       } else {
         $( '#gamer-profile-container' ).hide( );
+        $( '#form-signin' ).show( );
       }
 
     },
@@ -228,7 +270,7 @@ $(function(){
     renderFriend: function( model ) {
 
       $( '#friends-heading' ).show( );
-      var view = new GamerProfileView( { model: model } );
+      var view = new GamerProfileItemView( { model: model } );
       $( '#friends-container' ).append( view.render().el );
 
     },
@@ -250,7 +292,7 @@ $(function(){
         valid = false;
         $( '#form-submit' ).attr( 'disabled', 'disabled' );
       } else {
-        $( '#form-submit' ).removeAttr('disabled');
+        $( '#form-submit' ).removeAttr( 'disabled' );
       }
 
       return valid;
@@ -271,6 +313,15 @@ $(function(){
 
     },
 
+    signOut: function( ) {
+
+      this.input.val( '' );
+      $( '#form-signin' ).show( );
+      $( '#gamer-profile-container' ).hide( );
+      this.clearFriends( );
+
+    },
+
     startLoader: function( ) {
 
       $( '#gamertag' ).attr( 'disabled', 'disabled' );
@@ -286,8 +337,6 @@ $(function(){
     }
 
   });
-
-  // var App = new AppView( );
 
   var gamerProfileModel = new GamerProfileModel( );
   var view = new BroLarmView( { model: gamerProfileModel } );

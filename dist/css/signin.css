@@ -51,7 +51,8 @@ p {
 
 #friends-heading {
   display: none;
-  padding: 15px;
+  clear: both;
+  padding-left: 15px;
   width: 330px;
   margin: 0 auto;
 }

@@ -15,13 +15,10 @@
   <body>
 
     <div class="container" id="bro-larm-app">
-      <div class="form-signin">
+      <div id="form-signin" class="form-signin">
         <h2 class="form-heading">Sign in to Xbox LIVE</h2>
 				<div class="form-group">
         	<input type="text" class="form-control" id="gamertag" placeholder="Gamertag" autofocus>
-	        <!--label class="checkbox">
-	          <input type="checkbox" value="remember-me"> Remember me
-	        </label-->
 				</div>
         <!--button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button-->
 				<button id="form-submit" class="btn btn-lg btn-primary btn-block ladda-button" data-style="slide-up" disabled><span class="ladda-label">Sign in</span></button>
@@ -33,12 +30,13 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//code.jquery.com/jquery.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 		<script src="js/spin.min.js"></script>
 		<script src="js/ladda.min.js"></script>
 
-    <!-- Todo app -->
+    <!-- Bro-Larm app -->
     <script src="js/json2.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/backbone.js"></script>
@@ -62,14 +60,27 @@
       <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
     </script>
 
-    <script type="text/template" id="gamer-profile-template">
+    <script type="text/template" id="gamer-profile-main-template">
       <div class="gamer-profile">
-				<img src="<%= avatar %>" class="img-rounded pull-left avatar" />
+        <img src="<%= avatar %>" class="img-circle pull-left avatar" />
         <p class="stats-copy">
-  				<b><%= gamertag %></b><br />
-  				<small><%= presence %></small>
+          <b><%= gamertag %></b><br />
+          <small><%= presence %></small>
         </p>
-			</div>
+        <p>
+          <button type="button" id="btn-sign-out" class="btn btn-primary btn-xs">Sign out</button>
+        </p>
+      </div>
+    </script>
+
+    <script type="text/template" id="gamer-profile-item-template">
+      <div class="gamer-profile">
+        <img src="<%= avatar %>" class="img-rounded pull-left avatar" />
+        <p class="stats-copy">
+          <b><%= gamertag %></b><br />
+          <small><%= presence %></small>
+        </p>
+      </div>
     </script>
 
   </body>
