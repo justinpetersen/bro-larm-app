@@ -271,7 +271,7 @@ $(function(){
 
     renderFriend: function( model ) {
 
-      $( '#friends-heading' ).fadeIn( );
+      $( '#friends-heading' ).fadeIn( 200 );
       $( '#friends-container' ).fadeIn( );
       var view = new GamerProfileItemView( { model: model } );
       $( '#friends-container' ).append( view.render().el );

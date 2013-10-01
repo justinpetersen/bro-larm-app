@@ -57,6 +57,8 @@ p {
 
 #friends-container {
   display: none;
+  height: 415px;
+  overflow: scroll;
 }
 
 .gamer-profile {
@@ -64,7 +66,7 @@ p {
 }
 
 .avatar {
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 .stats-copy {
