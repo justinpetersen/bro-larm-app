@@ -1,6 +1,4 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #eee;
 }
 
@@ -55,6 +53,10 @@ p {
   padding-left: 15px;
   width: 330px;
   margin: 0 auto;
+}
+
+#friends-container {
+  display: none;
 }
 
 .gamer-profile {

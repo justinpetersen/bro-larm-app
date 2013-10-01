@@ -12,12 +12,14 @@ $(function(){
     },
 
     defaults: function( ) {
+      
       return {
         gamertag: '',
         avatar: '',
         presence: '',
         online: false
       };
+      
     },
 
     parse: function( response, options ) {
@@ -258,18 +260,19 @@ $(function(){
       console.log( 'BroLarmView.renderGamerProfile( )' );
 
       if ( this.model.get( 'avatar' ) != '' ) {
-        $( '#gamer-profile-container' ).show( );
-        $( '#form-signin' ).hide( );
+      $( '#form-signin' ).hide( );
+        $( '#gamer-profile-container' ).fadeIn( );
       } else {
         $( '#gamer-profile-container' ).hide( );
-        $( '#form-signin' ).show( );
+        $( '#form-signin' ).fadeIn( );
       }
 
     },
 
     renderFriend: function( model ) {
 
-      $( '#friends-heading' ).show( );
+      $( '#friends-heading' ).fadeIn( );
+      $( '#friends-container' ).fadeIn( );
       var view = new GamerProfileItemView( { model: model } );
       $( '#friends-container' ).append( view.render().el );
 
@@ -316,7 +319,7 @@ $(function(){
     signOut: function( ) {
 
       this.input.val( '' );
-      $( '#form-signin' ).show( );
+      $( '#form-signin' ).fadeIn( );
       $( '#gamer-profile-container' ).hide( );
       this.clearFriends( );
 
