@@ -61,8 +61,14 @@ p {
   overflow: scroll;
 }
 
-.gamer-profile {
+.gamer-profile-item {
   clear: both;
+  height: 40px;
+}
+
+.left {
+  display: block;
+  float: left;
 }
 
 .avatar {
@@ -74,4 +80,5 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 220px;
 }

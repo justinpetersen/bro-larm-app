@@ -76,12 +76,21 @@
     </script>
 
     <script type="text/template" id="gamer-profile-item-template">
-      <div class="gamer-profile">
-        <img src="<%= avatar %>" class="img-rounded pull-left avatar" />
-        <p class="stats-copy">
-          <b><%= gamertag %></b><br />
-          <small><%= presence %></small>
-        </p>
+      <div class="gamer-profile-item">
+				<div class="left checkbox">
+			    <label>
+			      <input type="checkbox">
+			    </label>
+			  </div>
+				<div class="left avatar">
+        	<img src = "<%= avatar %>" class="img-rounded" />
+				</div>
+				<div class="left">
+	        <p class="stats-copy">
+	          <b><%= gamertag %></b><br />
+	          <small><%= presence %></small>
+	        </p>
+				</div>
       </div>
     </script>
 
