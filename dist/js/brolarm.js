@@ -3,23 +3,16 @@ $(function(){
 
   var FriendModel = Backbone.Model.extend({
 
-    urlRoot: 'http://www.xboxleaders.com/api/2.0/profile.json',
-
-    url: function( ) {
-
-      return this.urlRoot + '?gamertag=' + this.get( 'gamertag' );
-
-    },
-
     defaults: function( ) {
-      
+
       return {
         gamertag: '',
         avatar: '',
         presence: '',
-        online: false
+        online: false,
+        selected: false
       };
-      
+
     },
 
     parse: function( response, options ) {
@@ -343,5 +336,38 @@ $(function(){
 
   var gamerProfileModel = new GamerProfileModel( );
   var view = new BroLarmView( { model: gamerProfileModel } );
+
+  // Firebase
+
+  var GamerModel = Backbone.Model.extend({
+
+    idAttribute: 'gamertag',
+
+    initialize: function( ) {
+
+      console.log( 'BroLarmModel.initialize( )' );
+
+    },
+
+    defaults: function( ) {
+      return {
+        gamertag: ''
+      };
+    }
+
+  });
+
+  var GamersCollection = Backbone.Collection.extend({
+
+    model: GamerModel,
+
+    firebase: new Backbone.Firebase( 'https://cod-bro-larm.firebaseio.com' )
+
+  });
+
+  var gamersCollection = new GamersCollection( );
+  gamersCollection.add( new GamerModel( { gamertag: 'test1' } ) );
+  gamersCollection.add( new GamerModel( { gamertag: 'test2' } ) );
+  gamersCollection.add( new GamerModel( { gamertag: 'test3' } ) );
 
 });
