@@ -337,37 +337,39 @@ $(function(){
   var gamerProfileModel = new GamerProfileModel( );
   var view = new BroLarmView( { model: gamerProfileModel } );
 
-  // Firebase
-
   var GamerModel = Backbone.Model.extend({
-
+    
     idAttribute: 'gamertag',
 
-    initialize: function( ) {
-
-      console.log( 'BroLarmModel.initialize( )' );
-
-    },
-
     defaults: function( ) {
+      
       return {
         gamertag: ''
       };
+      
     }
 
   });
 
-  var GamersCollection = Backbone.Collection.extend({
+  // Todo Collection
+  // ---------------
 
+  // The collection of todos is backed by *Firebase*.
+  var GamerCollection = Backbone.Firebase.Collection.extend({
+
+    // Reference to this collection's model.
     model: GamerModel,
 
-    firebase: new Backbone.Firebase( 'https://cod-bro-larm.firebaseio.com' )
-
+    // Save all of the todo items in a Firebase.
+    firebase: new Firebase("https://cod-bro-larm.firebaseio.com")
+    
   });
-
-  var gamersCollection = new GamersCollection( );
-  gamersCollection.add( new GamerModel( { gamertag: 'test1' } ) );
-  gamersCollection.add( new GamerModel( { gamertag: 'test2' } ) );
-  gamersCollection.add( new GamerModel( { gamertag: 'test3' } ) );
+  
+  var gamerCollection = new GamerCollection( );
+  var gamerModel = new GamerModel( { gamertag: 'user1' } );
+  console.log( 'gamerModel.id: ' + gamerModel.id );
+  console.log( 'gamerModel.cid: ' + gamerModel.cid );
+  
+  gamerCollection.add( gamerModel );
 
 });
