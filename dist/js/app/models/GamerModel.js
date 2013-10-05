@@ -1,4 +1,5 @@
 $(function(){
+  "use strict";
 
   var GamerModel = Backbone.Model.extend({
   

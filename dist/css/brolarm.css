@@ -1,0 +1,25 @@
+body {
+  
+  padding-top: 50px;
+  
+}
+.starter-template {
+  
+  padding: 40px 15px;
+  text-align: center;
+  
+}
+
+.navbar-inverse {
+  
+  background-color: #000;
+  
+}
+
+.navbar-brand { 
+  
+  background-image: url( '../images/cod-logo.jpg' );
+  width: 179px;
+  height: 52px;
+  
+}
