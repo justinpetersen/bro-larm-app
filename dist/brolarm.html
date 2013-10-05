@@ -98,24 +98,18 @@
     <script src="js/vendor/backbone-firebase.js" type="text/javascript"></script>
 
     <!-- Bro-Larm -->
-    <script src="js/app/brolarm.js" type="text/javascript"></script>
+    <script src="js/app/brolarmapp.js" type="text/javascript"></script>
+    <script src="js/app/app.js" type="text/javascript"></script>
 
     <!-- Start the app -->
     <script type="text/javascript">
-        $(document).ready(function(){
-            var app = {
-                views: {},
-                collections: {},
-                models: {},
-                firebase: null,
-                router: null
-            };
 
-            //START APP & ROUTER
-            app.views.controller = new Cake.Views.Controller();
-            app.router = new Cake.Router(app.views.controller);
-            Backbone.history.start({pushState:true});
-        });
+			$(function(){
+
+			  var brolarm = new BroLarm.Views.Controller( );
+
+			})();
+
     </script>
 
   </body>
