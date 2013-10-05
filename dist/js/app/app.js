@@ -1,6 +1,6 @@
 $(function(){
 
-  var BroLarm.Views.Controller = Backbone.View.extend({
+  BroLarm.View.Controller = Backbone.View.extend({
   
     initialize: function( ) {
       
@@ -10,4 +10,4 @@ $(function(){
 
   });
 
-})();
+});
