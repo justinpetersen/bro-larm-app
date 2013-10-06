@@ -4,7 +4,8 @@ $(function(){
   BroLarm.Router = Backbone.Router.extend({
   
     routes: {
-      'home': 'home'
+      'home': 'home',
+      'settings': 'settings'
     },
 
     initialize: function( controller ) {
@@ -18,12 +19,15 @@ $(function(){
     },
 
     home: function( ) {
-      
+
       console.log( 'BroLarm.Router.home( )' );
-      
-      this.setPage( 'home' );
-      this.controller.trigger( 'home' );
-      
+
+    },
+
+    settings: function( ) {
+
+      console.log( 'BroLarm.Router.settings( )' );
+
     },
 
     setPage: function( page ) {

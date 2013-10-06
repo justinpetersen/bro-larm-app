@@ -65,6 +65,23 @@ $(function(){
       
       console.log( 'BroLarm.View.Controller.render( )' );
       
+      switch ( this.currentPage ) {
+        case 'home':
+          this.views.home = new BroLarm.View.HomeView({
+            model: this.models.userModel,
+            router: this.router
+          });
+          break;
+        case 'settings':
+          this.views.settings = new BroLarm.View.GamerLoginView({
+            model: this.models.userModel,
+            router: this.router
+          });
+          break;
+        default:
+          break;
+      }
+      
       return this;
       
     },
