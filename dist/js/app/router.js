@@ -1,10 +1,10 @@
 $(function(){
-  "use strict";
+  'use strict';
 
   BroLarm.Router = Backbone.Router.extend({
   
     routes: {
-      "home": 'home'
+      'home': 'home'
     },
 
     initialize: function( controller ) {

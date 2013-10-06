@@ -23,3 +23,23 @@ body {
   height: 52px;
   
 }
+
+#fb-login-button {
+
+  display: none;
+
+}
+
+#fb-logout-button {
+
+  display: none;
+
+}
+
+#fb-profile-pic {
+
+  display: none;
+  width: 36px;
+  height: 36px;
+
+}

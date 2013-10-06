@@ -14,21 +14,21 @@ $(function(){
     // Default attributes for the todo item.
     defaults: function() {
       return {
-        title: "empty todo...",
+        title: 'empty todo...',
         done: false
       };
     },
 
     // Ensure that each todo created has `title`.
     initialize: function() {
-      if (!this.get("title")) {
-        this.set({"title": this.defaults().title});
+      if (!this.get('title')) {
+        this.set({'title': this.defaults().title});
       }
     },
 
     // Toggle the `done` state of this todo item.
     toggle: function() {
-      this.set({done: !this.get("done")});
+      this.set({done: !this.get('done')});
     }
 
   });
@@ -43,7 +43,7 @@ $(function(){
     model: Todo,
 
     // Save all of the todo items in a Firebase.
-    firebase: new Firebase("https://cod-bro-larm.firebaseio.com"),
+    firebase: new Firebase('https://cod-bro-larm.firebaseio.com'),
 
     // Filter down the list of all todo items that are finished.
     done: function() {
@@ -66,18 +66,18 @@ $(function(){
   var TodoView = Backbone.View.extend({
 
     //... is a list tag.
-    tagName:  "li",
+    tagName:  'li',
 
     // Cache the template function for a single item.
     template: _.template($('#item-template').html()),
 
     // The DOM events specific to an item.
     events: {
-      "click .toggle"   : "toggleDone",
-      "dblclick .view"  : "edit",
-      "click a.destroy" : "clear",
-      "keypress .edit"  : "updateOnEnter",
-      "blur .edit"      : "close"
+      'click .toggle'   : 'toggleDone',
+      'dblclick .view'  : 'edit',
+      'click a.destroy' : 'clear',
+      'keypress .edit'  : 'updateOnEnter',
+      'blur .edit'      : 'close'
     },
 
     // The TodoView listens for changes to its model, re-rendering. Since there's
@@ -96,25 +96,25 @@ $(function(){
       return this;
     },
 
-    // Toggle the `"done"` state of the model.
+    // Toggle the `'done'` state of the model.
     toggleDone: function() {
       this.model.toggle();
     },
 
-    // Switch this view into `"editing"` mode, displaying the input field.
+    // Switch this view into `'editing'` mode, displaying the input field.
     edit: function() {
-      this.$el.addClass("editing");
+      this.$el.addClass('editing');
       this.input.focus();
     },
 
-    // Close the `"editing"` mode, saving changes to the todo.
+    // Close the `'editing'` mode, saving changes to the todo.
     close: function() {
       var value = this.input.val();
       if (!value) {
         this.clear();
       } else {
         this.model.set({title: value});
-        this.$el.removeClass("editing");
+        this.$el.removeClass('editing');
       }
     },
 
@@ -138,24 +138,24 @@ $(function(){
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: $("#todoapp"),
+    el: $('#todoapp'),
 
     // Our template for the line of statistics at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
-      "keypress #new-todo":  "createOnEnter",
-      "click #clear-completed": "clearCompleted",
-      "click #toggle-all": "toggleAllComplete"
+      'keypress #new-todo':  'createOnEnter',
+      'click #clear-completed': 'clearCompleted',
+      'click #toggle-all': 'toggleAllComplete'
     },
 
     // At initialization we bind to the relevant events on the `Todos`
     // collection, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved in *Firebase*.
     initialize: function() {
-      this.input = this.$("#new-todo");
-      this.allCheckbox = this.$("#toggle-all")[0];
+      this.input = this.$('#new-todo');
+      this.allCheckbox = this.$('#toggle-all')[0];
 
       this.listenTo(Todos, 'add', this.addOne);
       this.listenTo(Todos, 'reset', this.addAll)
@@ -187,7 +187,7 @@ $(function(){
     // appending its element to the `<ul>`.
     addOne: function(todo) {
       var view = new TodoView({model: todo});
-      this.$("#todo-list").append(view.render().el);
+      this.$('#todo-list').append(view.render().el);
     },
 
     // Add all items in the **Todos** collection at once.

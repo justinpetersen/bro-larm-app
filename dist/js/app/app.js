@@ -9,19 +9,17 @@ $(function(){
     
     models: { },
     
+    views: { },
+    
     router: null,
     
     currentPage: 'home',
     
     el: $('#app'),
     
-    events: {
-      'click #fb-login-button': 'login'
-    },
-    
     onAuthorizeUser: function( error, user ) {
       
-      console.log( 'BroLarm.Views.Controller.onAuthorizeUser( )' );
+      console.log( 'BroLarm.View.Controller.onAuthorizeUser( )' );
       
       if ( user ) {
         
@@ -43,7 +41,7 @@ $(function(){
 				
 			} else {
 			  
-				// Logged out
+        this.models.userModel.set( this.models.userModel.defaults( ) );
 				
 			}
       
@@ -51,16 +49,38 @@ $(function(){
     
     initialize: function( ) {
       
-      console.log( 'BroLarm.Views.Controller.initialize( )' );
+      console.log( 'BroLarm.View.Controller.initialize( )' );
       
-      this.firebase =  new Firebase('https://cod-bro-larm.firebaseio.com');
-      
+      this.firebase =  new Firebase( 'https://cod-bro-larm.firebaseio.com' );
 			this.models.userModel = new BroLarm.Model.UserModel( );
-      
 			this.collections.userCollection = new BroLarm.Collection.UserCollection( );
-      
+			
+			this.createNav( );
+			
       this.authorizeUser( );
     
+    },
+    
+    render: function( ) {
+      
+      console.log( 'BroLarm.View.Controller.render( )' );
+      
+      return this;
+      
+    },
+    
+    createNav: function( ) {
+      
+      console.log( 'BroLarm.View.Controller.createNav( )' );
+      
+      this.views.nav = new BroLarm.View.NavView({
+        model: this.models.userModel,
+        router: this.router
+      });
+      
+      this.listenTo( this.views.nav, 'onLogin', this.login );
+      this.listenTo( this.views.nav, 'onLogout', this.logout );
+      
     },
     
 		authorizeUser: function( ) {
@@ -73,11 +93,18 @@ $(function(){
 
 		login: function( e ) {
       
-      console.log( 'BroLarm.Views.Controller.authorizeUser( )' );
+      console.log( 'BroLarm.Views.Controller.login( )' );
 		  
-      e.preventDefault();
 			this.auth.login( 'facebook' );
 			
+		},
+		
+		logout: function( e ) {
+      
+      console.log( 'BroLarm.Views.Controller.logout( )' );
+		  
+		  this.auth.logout( );
+		  
 		}
 
   });

@@ -14,29 +14,9 @@
   </head>
   <body>
 
-		<div id="app">
+		<div id='app'>
 			
-	    <div class="navbar navbar-inverse navbar-fixed-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="navbar-brand" href="#"></a>
-	        </div>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="#">Home</a></li>
-	            <li><a href="#settings">Settings</a></li>
-	          </ul>
-	          <div class="navbar-form navbar-right">
-	            <button id="fb-login-button" class="btn btn-primary">Login with Facebook</button>
-	          </div>
-	        </div><!--/.navbar-collapse -->
-	      </div>
-	    </div>
+			<div id='nav-container'></div>
 
 	    <div class='container'>
 
@@ -49,6 +29,32 @@
 		</div><!--/.app -->
 
     <!-- Templates -->
+    <script type='text/template' id='nav-template'>
+	    <div class='navbar navbar-inverse navbar-fixed-top'>
+	      <div class='container'>
+	        <div class='navbar-header'>
+	          <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+	            <span class='icon-bar'></span>
+	            <span class='icon-bar'></span>
+	            <span class='icon-bar'></span>
+	          </button>
+	          <a class='navbar-brand' href='#'></a>
+	        </div>
+	        <div class='navbar-collapse collapse'>
+	          <ul class='nav navbar-nav'>
+	            <li class='active'><a href='#'>Home</a></li>
+	            <li><a href='#settings'>Settings</a></li>
+	          </ul>
+	          <div class='navbar-form navbar-right'>
+	            <button id='fb-login-button' class='btn btn-primary'>Login with Facebook</button>
+							<button id='fb-logout-button' class='btn btn-primary btn-xs'>Logout</button>
+							<img id='fb-profile-pic' class='img-rounded' src='<%= id == "" ? "https://graph.facebook.com/257756954235461/picture" : "https://graph.facebook.com/" + id + "/picture" %>' />
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+		</script>
+
     <script type='text/template' id='item-template'>
       <div class='view'>
         <input class='toggle' type='checkbox' <%= done ? 'checked='checked'' : '' %> />
@@ -121,6 +127,7 @@
     <script src='js/app/router.js' type='text/javascript'></script>
     <script src='js/app/models/UserModel.js' type='text/javascript'></script>
     <script src='js/app/collections/UserCollection.js' type='text/javascript'></script>
+    <script src='js/app/views/NavView.js' type='text/javascript'></script>
     <script src='js/app/app.js' type='text/javascript'></script>
 
     <!-- Start the app -->
