@@ -1,15 +1,18 @@
 $(function(){
+  "use strict";
 
   BroLarm.View.GamerLoginView = Backbone.View.extend({
 
     el: $( '#content-container' ),
-    
+
     template: _.template( $( '#gamer-login-template' ).html( ) ),
 
     events: {
       'keyup #gamertag': 'onGamertagKeyPress',
-      'click #form-submit': 'onGamertagSubmit'
+      'click #gamertag-submit': 'onGamertagSubmit'
     },
+
+    laddaSubmit: null,
 
     onGamertagKeyPress: function( e ) {
 
@@ -20,7 +23,7 @@ $(function(){
 
       // If the enter key is pressed and the form is valid, then load the gamer profile
       if ( e.keyCode == 13 && valid ) {
-        this.loadGamerProfile( this.input.val( ) );
+        this.loadGamerProfile( $( '#gamertag' ).val( ) );
       }
 
     },
@@ -29,7 +32,7 @@ $(function(){
 
       console.log( 'BroLarm.View.GamerLoginView.onGamertagSubmit( )' );
 
-      this.loadGamerProfile( this.input.val( ) );
+      this.loadGamerProfile( $( '#gamertag' ).val( ) );
 
     },
 
@@ -64,20 +67,17 @@ $(function(){
 
       console.log( 'BroLarm.View.GamerLoginView.initialize( )' );
 
-      this.input = $( '#gamertag' );
-      this.laddaSubmit = Ladda.create( $( '#gamertag-submit' )[ 0 ] );
-
-      /*this.gamerProfileView = new GamerProfileMainView( { model: this.model } );
-      $( '#gamer-profile-container' ).html( this.gamerProfileView.render( ).el );
+      // this.gamerProfileView = new GamerProfileMainView( { model: this.model } );
+      // $( '#gamer-profile-container' ).html( this.gamerProfileView.render( ).el );
 
       // Set up events
-      this.listenTo( this.model, 'change', this.onModelChanged );
-      this.listenTo( this.model.friendsCollection, 'add', this.onFriendAdded );
-      this.listenTo( this.gamerProfileView, 'onSignOut', this.onSignOut );
+      // this.listenTo( this.model, 'change', this.onModelChanged );
+      // this.listenTo( this.model.friendsCollection, 'add', this.onFriendAdded );
+      // this.listenTo( this.gamerProfileView, 'onSignOut', this.onSignOut );
 
       // Disable "Sign in" button until the user enters a gamertag
-      this.validateForm( );*/
-      
+      // this.validateForm( );
+
       this.render( );
 
     },
@@ -88,6 +88,8 @@ $(function(){
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
+      this.laddaSubmit = Ladda.create( $( '#gamertag-submit' )[ 0 ] );
+
       return this;
 
     },
@@ -97,11 +99,11 @@ $(function(){
       console.log( 'BroLarm.View.GamerLoginView.renderGamerProfile( )' );
 
       if ( this.model.get( 'avatar' ) != '' ) {
-      $( '#form-signin' ).hide( );
+      $( '#gamer-login-form' ).hide( );
         $( '#gamer-profile-container' ).fadeIn( );
       } else {
         $( '#gamer-profile-container' ).hide( );
-        $( '#form-signin' ).fadeIn( );
+        $( '#gamer-login-form' ).fadeIn( );
       }
 
     },
@@ -128,11 +130,11 @@ $(function(){
       var valid = true;
 
       // Check that the form entries are valid and disable/enable the submit button
-      if ( this.input.val( ).length < 3 ) {
+      if ( $( '#gamertag' ).val( ).length < 3 ) {
         valid = false;
-        $( '#form-submit' ).attr( 'disabled', 'disabled' );
+        $( '#gamertag-submit' ).attr( 'disabled', 'disabled' );
       } else {
-        $( '#form-submit' ).removeAttr( 'disabled' );
+        $( '#gamertag-submit' ).removeAttr( 'disabled' );
       }
 
       return valid;
@@ -155,7 +157,7 @@ $(function(){
 
     signOut: function( ) {
 
-      this.input.val( '' );
+      $( '#gamertag' ).val( '' );
       $( '#form-signin' ).fadeIn( );
       $( '#gamer-profile-container' ).hide( );
       this.clearFriends( );
@@ -176,6 +178,6 @@ $(function(){
 
     }
 
-  }); 
+  });
 
 });

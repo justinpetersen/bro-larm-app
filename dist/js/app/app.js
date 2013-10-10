@@ -2,70 +2,56 @@ $(function(){
   'use strict';
 
   BroLarm.View.Controller = Backbone.View.extend({
-		
-    firebase: null,
-    
+
+    userManager: null,
+
     collections: { },
-    
+
     models: { },
-    
+
     views: { },
-    
+
     router: null,
-    
+
     currentPage: 'home',
-    
+
     el: $('#app'),
-    
-    onAuthorizeUser: function( error, user ) {
-      
-      console.log( 'BroLarm.View.Controller.onAuthorizeUser( )' );
-      
-      if ( user ) {
-        
-        console.log( 'id: ' + user.id + ', username: ' + user.username );
-        
-        this.models.userModel.set( user );
-        this.collections.userCollection.add( this.models.userModel );
-				
-			} else if ( error ) {
-			  
-        // An error occurred while attempting login
-        switch( error.code ) {
-          case 'INVALID_EMAIL':
-            break;
-          case 'INVALID_PASSWORD':
-            break;
-          default:
-        }
-				
-			} else {
-			  
-        this.models.userModel.set( this.models.userModel.defaults( ) );
-				
-			}
-      
+
+    onLogin: function( ) {
+
+      this.models.userManager.login( );
+
     },
-    
+
+    onLogout: function( ) {
+
+      this.models.userManager.logout( );
+
+    },
+
+    onResetUser: function( ) {
+
+      // this.views.nav.model = this.models.userManager.facebookUser;
+
+    },
+
     initialize: function( ) {
-      
+
       console.log( 'BroLarm.View.Controller.initialize( )' );
-      
-      this.firebase =  new Firebase( 'https://cod-bro-larm.firebaseio.com' );
-			this.models.userModel = new BroLarm.Model.UserModel( );
-			this.collections.userCollection = new BroLarm.Collection.UserCollection( );
-			
-			this.createNav( );
-			
-      this.authorizeUser( );
-    
+
+      this.models.userManager = new BroLarm.Model.BroLarmUserManager( );
+      // this.listenTo( this.models.userModel, 'onResetUser', $.proxy( this.onResetUser, this ) );
+      this.models.userManager.authorizeUser( );
+
+      this.createNav( );
+
     },
-    
+
     render: function( ) {
-      
+
       console.log( 'BroLarm.View.Controller.render( )' );
-      
-      switch ( this.currentPage ) {
+
+      /* switch ( this.currentPage ) {
         case 'home':
           this.views.home = new BroLarm.View.HomeView({
             model: this.models.userModel,
@@ -80,49 +66,26 @@ $(function(){
           break;
         default:
           break;
-      }
-      
+      }*/
+
       return this;
-      
+
     },
-    
+
     createNav: function( ) {
-      
+
       console.log( 'BroLarm.View.Controller.createNav( )' );
-      
+      console.log( 'this.userManager.facebookUser: ' + this.models.userManager.facebookUser );
+
       this.views.nav = new BroLarm.View.NavView({
-        model: this.models.userModel,
+        model: this.models.userManager.facebookUser,
         router: this.router
       });
-      
-      this.listenTo( this.views.nav, 'onLogin', this.login );
-      this.listenTo( this.views.nav, 'onLogout', this.logout );
-      
-    },
-    
-		authorizeUser: function( ) {
-      
-      console.log( 'BroLarm.Views.Controller.authorizeUser( )' );
-		  
-			this.auth = new FirebaseSimpleLogin( this.firebase, $.proxy( this.onAuthorizeUser, this ) );
-			
-		},
 
-		login: function( e ) {
-      
-      console.log( 'BroLarm.Views.Controller.login( )' );
-		  
-			this.auth.login( 'facebook' );
-			
-		},
-		
-		logout: function( e ) {
-      
-      console.log( 'BroLarm.Views.Controller.logout( )' );
-		  
-		  this.auth.logout( );
-		  
-		}
+      this.listenTo( this.views.nav, 'onLogin', $.proxy( this.onLogin, this ) );
+      this.listenTo( this.views.nav, 'onLogout', $.proxy( this.onLogout, this ) );
+
+    }
 
   });
 
