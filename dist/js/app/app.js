@@ -17,11 +17,15 @@ $(function(){
 
     onLogin: function( ) {
 
+      console.log( 'BroLarm.View.Controller.onLogin( )' );
+
       this.models.userManager.login( );
 
     },
 
     onLogout: function( ) {
+
+      console.log( 'BroLarm.View.Controller.onLogout( )' );
 
       this.models.userManager.logout( );
 
@@ -31,12 +35,7 @@ $(function(){
 
       console.log( 'BroLarm.View.Controller.onResetUser( )' );
 
-      // If the nav exists, then initialize it with the new user model
-      if ( this.views.nav ) {
-
-        this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
-
-      }
+      resetViews( );
 
     },
 
@@ -60,13 +59,13 @@ $(function(){
       switch ( this.currentPage ) {
         case 'home':
           this.views.home = new BroLarm.View.HomeView({
-            model: this.models.userManager,
+            model: this.models.userManager.facebookUser,
             router: this.router
           });
           break;
         case 'settings':
-          this.views.settings = new BroLarm.View.GamerLoginView({
-            model: this.models.userManager,
+          this.views.settings = new BroLarm.View.XboxLoginView({
+            model: this.models.userManager.xboxUser,
             router: this.router
           });
           break;
@@ -81,7 +80,6 @@ $(function(){
     createNav: function( ) {
 
       console.log( 'BroLarm.View.Controller.createNav( )' );
-      console.log( 'this.userManager.facebookUser: ' + this.models.userManager.facebookUser );
 
       this.views.nav = new BroLarm.View.NavView({
         model: this.models.userManager.facebookUser,
@@ -90,6 +88,19 @@ $(function(){
 
       this.listenTo( this.views.nav, 'onLogin', $.proxy( this.onLogin, this ) );
       this.listenTo( this.views.nav, 'onLogout', $.proxy( this.onLogout, this ) );
+
+    },
+
+    resetViews: function( ) {
+
+      console.log( 'BroLarm.View.Controller.resetViews( )' );
+
+      // If the nav exists, then initialize it with the new user model
+      if ( this.views.nav ) {
+
+        this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
+
+      }
 
     }
 

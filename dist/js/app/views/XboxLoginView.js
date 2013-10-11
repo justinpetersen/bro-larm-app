@@ -1,7 +1,7 @@
 $(function(){
   "use strict";
 
-  BroLarm.View.GamerLoginView = Backbone.View.extend({
+  BroLarm.View.XboxLoginView = Backbone.View.extend({
 
     el: $( '#content-container' ),
 
