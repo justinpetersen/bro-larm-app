@@ -6,15 +6,12 @@ $(function(){
     firebase: null,
 
     broLarmUser: null,
-
-    facebookUser: null,
-
-    xboxUser: null,
-
     broLarmUserCollection: null,
 
+    facebookUser: null,
     facebookUserCollection: null,
 
+    xboxUser: null,
     xboxUserCollection: null,
 
     onAuthorizeUser: function( error, user ) {
