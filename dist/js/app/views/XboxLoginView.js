@@ -3,13 +3,14 @@ $(function(){
 
   BroLarm.View.XboxLoginView = Backbone.View.extend({
 
-    el: $( '#content-container' ),
+    el: $( '#xbox-login-container' ),
 
-    template: _.template( $( '#gamer-login-template' ).html( ) ),
+    template: _.template( $( '#xbox-login-template' ).html( ) ),
 
     events: {
       'keyup #gamertag': 'onGamertagKeyPress',
-      'click #gamertag-submit': 'onGamertagSubmit'
+      'click #gamertag-submit': 'onGamertagSubmit',
+      'click #btn-sign-out': 'onSignOut'
     },
 
     laddaSubmit: null,
@@ -47,23 +48,24 @@ $(function(){
     onModelChanged: function( e ) {
 
       console.log( 'BroLarm.View.GamerLoginView.onModelChanged( )' );
-      console.log( this.model.attributes );
 
-      this.stopLoader( );
-      this.checkShowGamerProfile( );
-      this.clearFriends( );
+      // this.stopLoader( );
+      // this.checkShowGamerProfile( );
+      // this.clearFriends( );
 
-    },
-
-    onFriendAdded: function( model ) {
-
-      console.log( 'BroLarm.View.GamerLoginView.onFriendAdded( )' );
-
-      this.renderFriend( model );
+      this.render( );
 
     },
 
-    initialize: function( ) {
+    // onFriendAdded: function( model ) {
+
+    //   console.log( 'BroLarm.View.GamerLoginView.onFriendAdded( )' );
+
+    //   this.renderFriend( model );
+
+    // },
+
+    initialize: function( options ) {
 
       console.log( 'BroLarm.View.GamerLoginView.initialize( )' );
 
@@ -75,8 +77,13 @@ $(function(){
       // this.listenTo( this.model.friendsCollection, 'add', this.onFriendAdded );
       // this.listenTo( this.gamerProfileView, 'onSignOut', this.onSignOut );
 
-      // Disable "Sign in" button until the user enters a gamertag
-      // this.validateForm( );
+      // If the model is being updated, then clean up and replace the old model with the new model
+      if ( options.model ) {
+        this.stopListening( this.model );
+        this.model = options.model;
+      }
+
+      this.listenTo( this.model, 'change', this.onModelChanged );
 
       this.render( );
 
@@ -90,6 +97,9 @@ $(function(){
 
       this.laddaSubmit = Ladda.create( $( '#gamertag-submit' )[ 0 ] );
 
+      this.stopLoader( );
+      this.checkShowGamerProfile( );
+
       return this;
 
     },
@@ -99,30 +109,30 @@ $(function(){
       console.log( 'BroLarm.View.GamerLoginView.renderGamerProfile( )' );
 
       if ( this.model.get( 'avatar' ) != '' ) {
-      $( '#gamer-login-form' ).hide( );
-        $( '#gamer-profile-container' ).fadeIn( );
+        $( '#xbox-login-form' ).hide( );
+        $( '#xbox-profile' ).fadeIn( );
       } else {
-        $( '#gamer-profile-container' ).hide( );
-        $( '#gamer-login-form' ).fadeIn( );
+        $( '#xbox-profile' ).hide( );
+        $( '#xbox-login-form' ).fadeIn( );
       }
 
     },
 
-    renderFriend: function( model ) {
+    // renderFriend: function( model ) {
 
-      $( '#friends-heading' ).fadeIn( 200 );
-      $( '#friends-container' ).fadeIn( );
-      var view = new GamerProfileItemView( { model: model } );
-      $( '#friends-container' ).append( view.render().el );
+    //   $( '#friends-heading' ).fadeIn( 200 );
+    //   $( '#friends-container' ).fadeIn( );
+    //   var view = new GamerProfileItemView( { model: model } );
+    //   $( '#friends-container' ).append( view.render().el );
 
-    },
+    // },
 
-    clearFriends: function( ) {
+    // clearFriends: function( ) {
 
-      $( '#friends-heading' ).hide( );
-      $( '#friends-container' ).empty( );
+    //   $( '#friends-heading' ).hide( );
+    //   $( '#friends-container' ).empty( );
 
-    },
+    // },
 
     validateForm: function( ) {
 
@@ -158,9 +168,9 @@ $(function(){
     signOut: function( ) {
 
       $( '#gamertag' ).val( '' );
-      $( '#form-signin' ).fadeIn( );
-      $( '#gamer-profile-container' ).hide( );
-      this.clearFriends( );
+      $( '#xbox-login-form' ).fadeIn( );
+      $( '#xbox-profile' ).hide( );
+      // this.clearFriends( );
 
     },
 

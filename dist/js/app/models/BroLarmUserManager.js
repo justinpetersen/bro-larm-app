@@ -14,6 +14,8 @@ $(function(){
     xboxUser: null,
     xboxUserCollection: null,
 
+    friendCollection: null,
+
     onAuthorizeUser: function( error, user ) {
 
       console.log( 'BroLarm.Model.BroLarmUserManager.onAuthorizeUser( )' );
@@ -43,20 +45,21 @@ $(function(){
       console.log( 'BroLarm.Model.BroLarmUserManager.initialize( )' );
 
       this.firebase =  new Firebase( 'https://cod-bro-larm.firebaseio.com' );
-      
-      this.createUserCollections( );
+
       this.createDefaultUser( );
+      this.createUserCollections( );
 
     },
-    
+
     createUserCollections: function( ) {
 
       console.log( 'BroLarm.Model.BroLarmUserManager.createUserCollections( )' );
-      
+
       this.broLarmUserCollection = new BroLarm.Collection.BroLarmUserCollection( );
       this.facebookUserCollection = new BroLarm.Collection.FacebookUserCollection( );
       this.xboxUserCollection = new BroLarm.Collection.XboxUserCollection( );
-      
+      this.friendCollection = new BroLarm.Collection.FriendCollection( { xboxUser: this.xboxUser } );
+
     },
 
     createDefaultUser: function( ) {
@@ -66,7 +69,7 @@ $(function(){
       this.broLarmUser = new BroLarm.Model.BroLarmUserModel( );
       this.facebookUser = new BroLarm.Model.FacebookUserModel( );
       this.xboxUser = new BroLarm.Model.XboxUserModel( );
-      
+
       this.trigger( 'onResetUser' );
 
     },
@@ -92,11 +95,11 @@ $(function(){
 
         this.broLarmUser = lookedUpUser;
         this.facebookUser = this.facebookUserCollection.get( this.broLarmUser.id );
-        
+
         this.trigger( 'onResetUser' );
 
       } else {
-        
+
         // If this is a new user, then store his Facebook attributes
 
         this.broLarmUser.set( 'id', user.id );

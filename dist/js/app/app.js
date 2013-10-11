@@ -35,7 +35,7 @@ $(function(){
 
       console.log( 'BroLarm.View.Controller.onResetUser( )' );
 
-      resetViews( );
+      this.resetViews( );
 
     },
 
@@ -48,6 +48,7 @@ $(function(){
       this.models.userManager.authorizeUser( );
 
       this.createNav( );
+      this.createXboxLogin( );
 
     },
 
@@ -56,22 +57,22 @@ $(function(){
       console.log( 'BroLarm.View.Controller.render( )' );
       console.log( '  currentPage: ' + this.currentPage );
 
-      switch ( this.currentPage ) {
-        case 'home':
-          this.views.home = new BroLarm.View.HomeView({
-            model: this.models.userManager.facebookUser,
-            router: this.router
-          });
-          break;
-        case 'settings':
-          this.views.settings = new BroLarm.View.XboxLoginView({
-            model: this.models.userManager.xboxUser,
-            router: this.router
-          });
-          break;
-        default:
-          break;
-      }
+      // switch ( this.currentPage ) {
+      //   case 'home':
+      //     this.views.home = new BroLarm.View.HomeView({
+      //       model: this.models.userManager.facebookUser,
+      //       router: this.router
+      //     });
+      //     break;
+      //   case 'settings':
+      //     this.views.settings = new BroLarm.View.XboxLoginView({
+      //       model: this.models.userManager.xboxUser,
+      //       router: this.router
+      //     });
+      //     break;
+      //   default:
+      //     break;
+      // }
 
       return this;
 
@@ -91,14 +92,30 @@ $(function(){
 
     },
 
+    createXboxLogin: function( ) {
+
+      this.views.xboxLogin = new BroLarm.View.XboxLoginView({
+        model: this.models.userManager.xboxUser,
+        router: this.router
+      });
+
+    },
+
     resetViews: function( ) {
 
       console.log( 'BroLarm.View.Controller.resetViews( )' );
 
-      // If the nav exists, then initialize it with the new user model
+      // If the nav exists, then initialize it with the new Facebook user
       if ( this.views.nav ) {
 
         this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
+
+      }
+
+      // If the Xbox login exists, then initialize it with the new Xbox user
+      if ( this.views.xboxLogin ) {
+
+        this.views.xboxLogin.initialize( { model: this.models.userManager.xboxUser } );
 
       }
 

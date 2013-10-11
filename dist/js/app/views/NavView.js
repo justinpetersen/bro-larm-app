@@ -37,7 +37,7 @@ $(function(){
         this.model = options.model;
       }
 
-      this.listenTo( this.model, 'change', this.render );
+      this.listenTo( this.model, 'change', $.proxy( this.render, this ) );
 
       this.render( );
 

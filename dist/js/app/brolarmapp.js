@@ -66,6 +66,8 @@ $(function(){
 
     urlRoot: 'http://www.xboxleaders.com/api/2.0/profile.json',
 
+    friendsCollection: null,
+
     initialize: function( ) {
 
       console.log( 'GamerProfileModel.initialize( )' );
