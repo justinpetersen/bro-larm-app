@@ -5,10 +5,8 @@ $(function(){
 
     userManager: null,
 
-    collections: { },
-
     models: { },
-
+    collections: { },
     views: { },
 
     router: null,
@@ -32,12 +30,12 @@ $(function(){
     onResetUser: function( ) {
 
       console.log( 'BroLarm.View.Controller.onResetUser( )' );
-      
+
       // If the nav exists, then initialize it with the new user model
       if ( this.views.nav ) {
-        
+
         this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
-        
+
       }
 
     },
@@ -57,6 +55,7 @@ $(function(){
     render: function( ) {
 
       console.log( 'BroLarm.View.Controller.render( )' );
+      console.log( '  currentPage: ' + this.currentPage );
 
       switch ( this.currentPage ) {
         case 'home':

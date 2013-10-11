@@ -30,7 +30,7 @@ $(function(){
     initialize: function( options ) {
 
       console.log( 'BroLarm.View.NavView.initialize( )' );
-      
+
       // If the model is being updated, then clean up and replace the old model with the new model
       if ( options.model ) {
         this.stopListening( this.model );
@@ -46,6 +46,7 @@ $(function(){
     render: function( ) {
 
       console.log( 'BroLarm.View.NavView.render( )' );
+      console.log( 'id: ' + this.model.id );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
