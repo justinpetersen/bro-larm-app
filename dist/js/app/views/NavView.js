@@ -30,6 +30,12 @@ $(function(){
     initialize: function( options ) {
 
       console.log( 'BroLarm.View.NavView.initialize( )' );
+      
+      // If the model is being updated, then clean up the old model
+      if ( options.model ) {
+        this.stopListening( this.model );
+        this.model = options.model;
+      }
 
       this.listenTo( this.model, 'change', this.render );
 
@@ -43,6 +49,7 @@ $(function(){
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
+      // If the user is logged in
       if ( this.model.id == '' ) {
         $('#fb-login-button').show( );
         $('#fb-logout-button').hide( );

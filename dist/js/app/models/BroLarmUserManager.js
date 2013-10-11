@@ -61,6 +61,8 @@ $(function(){
 
       this.broLarmUser = new BroLarm.Model.BroLarmUserModel( );
       this.facebookUser = new BroLarm.Model.FacebookUserModel( );
+      
+      this.trigger( 'onResetUser' );
 
     },
 
@@ -69,14 +71,12 @@ $(function(){
       console.log( 'BroLarm.Model.BroLarmUserManager.resetUser( )' );
 
       this.createDefaultUser( );
-      this.trigger( 'onResetUser' )
 
     },
 
     setFacebookUser: function( user ) {
 
       console.log( 'BroLarm.Model.BroLarmUserManager.setFacebookUser( )' );
-      console.log( '  id: ' + user.id );
 
       // Check if this Facebook user has a Bro-Larm account
 
@@ -86,10 +86,12 @@ $(function(){
         // If this is an existing user, then look up the user model
 
         this.broLarmUser = lookedUpUser;
-        this.facebookUser = this.facebookUserCollection.get( this.broLarmUser.facebookId );
+        this.facebookUser = this.facebookUserCollection.get( this.broLarmUser.id );
+        
+        this.trigger( 'onResetUser' );
 
       } else {
-
+        
         // If this is a new user, then store his Facebook attributes
 
         this.broLarmUser.set( 'id', user.id );

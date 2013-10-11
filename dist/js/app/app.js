@@ -32,6 +32,12 @@ $(function(){
     onResetUser: function( ) {
 
       console.log( 'BroLarm.View.Controller.onResetUser( )' );
+      
+      if ( this.views.nav ) {
+        
+        this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
+        
+      }
 
     },
 
