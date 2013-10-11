@@ -68,9 +68,8 @@ $(function(){
 
       console.log( 'BroLarm.Model.BroLarmUserManager.resetUser( )' );
 
-      // this.createDefaultUser( );
-
-      // this.trigger( 'onResetUser' );
+      this.createDefaultUser( );
+      this.trigger( 'onResetUser' )
 
     },
 

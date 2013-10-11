@@ -31,7 +31,7 @@ $(function(){
 
     onResetUser: function( ) {
 
-      // this.views.nav.model = this.models.userManager.facebookUser;
+      console.log( 'BroLarm.View.Controller.onResetUser( )' );
 
     },
 
@@ -40,7 +40,7 @@ $(function(){
       console.log( 'BroLarm.View.Controller.initialize( )' );
 
       this.models.userManager = new BroLarm.Model.BroLarmUserManager( );
-      // this.listenTo( this.models.userModel, 'onResetUser', $.proxy( this.onResetUser, this ) );
+      this.listenTo( this.models.userManager, 'onResetUser', $.proxy( this.onResetUser, this ) );
       this.models.userManager.authorizeUser( );
 
       this.createNav( );

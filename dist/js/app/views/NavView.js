@@ -27,7 +27,7 @@ $(function(){
 
     },
 
-    initialize: function( ) {
+    initialize: function( options ) {
 
       console.log( 'BroLarm.View.NavView.initialize( )' );
 
