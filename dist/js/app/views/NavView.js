@@ -31,7 +31,7 @@ $(function(){
 
       console.log( 'BroLarm.View.NavView.initialize( )' );
       
-      // If the model is being updated, then clean up the old model
+      // If the model is being updated, then clean up and replace the old model with the new model
       if ( options.model ) {
         this.stopListening( this.model );
         this.model = options.model;

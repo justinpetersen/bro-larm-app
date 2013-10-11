@@ -43,13 +43,20 @@ $(function(){
       console.log( 'BroLarm.Model.BroLarmUserManager.initialize( )' );
 
       this.firebase =  new Firebase( 'https://cod-bro-larm.firebaseio.com' );
+      
+      this.createUserCollections( );
+      this.createDefaultUser( );
 
+    },
+    
+    createUserCollections: function( ) {
+
+      console.log( 'BroLarm.Model.BroLarmUserManager.createUserCollections( )' );
+      
       this.broLarmUserCollection = new BroLarm.Collection.BroLarmUserCollection( );
       this.facebookUserCollection = new BroLarm.Collection.FacebookUserCollection( );
       this.xboxUserCollection = new BroLarm.Collection.XboxUserCollection( );
-
-      this.createDefaultUser( );
-
+      
     },
 
     createDefaultUser: function( ) {
@@ -58,6 +65,7 @@ $(function(){
 
       this.broLarmUser = new BroLarm.Model.BroLarmUserModel( );
       this.facebookUser = new BroLarm.Model.FacebookUserModel( );
+      this.xboxUser = new BroLarm.Model.XboxUserModel( );
       
       this.trigger( 'onResetUser' );
 

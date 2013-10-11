@@ -9,9 +9,7 @@ $(function(){
 
     initialize: function( ) {
 
-      console.log( 'GamerProfileModel.initialize( )' );
-
-      this.friendsCollection = new FriendsCollection( this );
+      console.log( 'BroLarm.Model.XboxUserModel.initialize( )' );
 
     },
 
@@ -22,17 +20,21 @@ $(function(){
     },
 
     defaults: function( ) {
+
+      console.log( 'BroLarm.Model.XboxUserModel.parse( )' );
+      
       return {
         gamertag: '',
         avatar: '',
         presence: '',
         online: false
       };
+      
     },
 
     parse: function( response, options ) {
 
-      console.log( 'GamerProfileModel.parse( )' );
+      console.log( 'BroLarm.Model.XboxUserModel.parse( )' );
 
       this.friendsCollection.fetch( );
 

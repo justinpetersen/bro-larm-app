@@ -13,7 +13,7 @@ $(function(){
 
     router: null,
 
-    currentPage: 'home',
+    currentPage: 'settings',
 
     el: $('#app'),
 
@@ -33,6 +33,7 @@ $(function(){
 
       console.log( 'BroLarm.View.Controller.onResetUser( )' );
       
+      // If the nav exists, then initialize it with the new user model
       if ( this.views.nav ) {
         
         this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
