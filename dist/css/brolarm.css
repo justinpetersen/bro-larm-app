@@ -55,7 +55,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 220px;
+  width: 200px;
 }
 
 #fb-login-button {

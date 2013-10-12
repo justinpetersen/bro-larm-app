@@ -56,7 +56,6 @@ $(function(){
     render: function( ) {
 
       console.log( 'BroLarm.View.Controller.render( )' );
-      console.log( '  currentPage: ' + this.currentPage );
 
       // switch ( this.currentPage ) {
       //   case 'home':
