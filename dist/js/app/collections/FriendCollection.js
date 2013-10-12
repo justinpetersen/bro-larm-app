@@ -23,15 +23,19 @@ $(function(){
     initialize: function( options ) {
 
       console.log( 'BroLarm.Collection.FriendCollection.initialize( )' );
-      console.log( '  options.xboxUser: ' + options.xboxUser );
 
-      // If the model is being updated, then clean up and replace the old model with the new model
-      if ( options.xboxUser ) {
+    },
+    
+    setXboxUser: function( user ) {
+
+      console.log( 'BroLarm.Collection.FriendCollection.setXboxUser( )' );
+      
+      if ( this.xboxUser ) {
         this.stopListening( this.xboxUser );
-        this.xboxUser = options.xboxUser;
-        this.listenTo( this.xboxUser, 'change', $.proxy( this.onXboxUserChange, this ) );
       }
-
+      this.xboxUser = user;
+      this.listenTo( this.xboxUser, 'change', $.proxy( this.onXboxUserChange, this ) );
+      
     },
 
     parse: function( response, options ) {

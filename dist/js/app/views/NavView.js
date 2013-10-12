@@ -2,7 +2,7 @@ $(function(){
 
   BroLarm.View.NavView = Backbone.View.extend({
 
-    el: $('#nav-container'),
+    el: $( '#nav-container' ),
 
     template: _.template( $( '#nav-template' ).html( ) ),
 

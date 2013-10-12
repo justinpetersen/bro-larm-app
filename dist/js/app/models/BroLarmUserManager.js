@@ -51,17 +51,6 @@ $(function(){
 
     },
 
-    createUserCollections: function( ) {
-
-      console.log( 'BroLarm.Model.BroLarmUserManager.createUserCollections( )' );
-
-      this.broLarmUserCollection = new BroLarm.Collection.BroLarmUserCollection( );
-      this.facebookUserCollection = new BroLarm.Collection.FacebookUserCollection( );
-      this.xboxUserCollection = new BroLarm.Collection.XboxUserCollection( );
-      this.friendCollection = new BroLarm.Collection.FriendCollection( { xboxUser: this.xboxUser } );
-
-    },
-
     createDefaultUser: function( ) {
 
       console.log( 'BroLarm.Model.BroLarmUserManager.createDefaultUser( )' );
@@ -69,8 +58,24 @@ $(function(){
       this.broLarmUser = new BroLarm.Model.BroLarmUserModel( );
       this.facebookUser = new BroLarm.Model.FacebookUserModel( );
       this.xboxUser = new BroLarm.Model.XboxUserModel( );
+      
+      if ( this.friendCollection ) {
+        this.friendCollection.setXboxUser( this.xboxUser );
+      }
 
       this.trigger( 'onResetUser' );
+
+    },
+
+    createUserCollections: function( ) {
+
+      console.log( 'BroLarm.Model.BroLarmUserManager.createUserCollections( )' );
+
+      this.broLarmUserCollection = new BroLarm.Collection.BroLarmUserCollection( );
+      this.facebookUserCollection = new BroLarm.Collection.FacebookUserCollection( );
+      this.xboxUserCollection = new BroLarm.Collection.XboxUserCollection( );
+      this.friendCollection = new BroLarm.Collection.FriendCollection( );
+      this.friendCollection.setXboxUser( this.xboxUser );
 
     },
 
@@ -117,8 +122,6 @@ $(function(){
       console.log( 'BroLarm.Model.BroLarmUserManager.authorizeUser( )' );
 
       this.auth = new FirebaseSimpleLogin( this.firebase, $.proxy( this.onAuthorizeUser, this ) );
-
-      console.log( 'this.auth: ' + this.auth );
 
     },
 

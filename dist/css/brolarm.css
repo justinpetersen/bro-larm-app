@@ -3,18 +3,6 @@ body {
   padding-top: 50px;
 
 }
-.starter-template {
-
-  padding: 40px 15px;
-  text-align: center;
-
-}
-
-.navbar-inverse {
-
-  background-color: #000;
-
-}
 
 .navbar-brand {
 
@@ -34,6 +22,28 @@ body {
   width: 330px;
   padding: 15px;
   margin: 0 auto;
+}
+
+.login-form {
+  width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.list-container {
+  width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.friend-item {
+  clear: both;
+  height: 40px;
+}
+
+.left {
+  display: block;
+  float: left;
 }
 
 .avatar {
@@ -72,4 +82,9 @@ body {
 
   display: none;
 
+}
+
+#friend-list {
+  height: 382px;
+  overflow: scroll;
 }

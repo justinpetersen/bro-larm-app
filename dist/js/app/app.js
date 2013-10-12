@@ -49,6 +49,7 @@ $(function(){
 
       this.createNav( );
       this.createXboxLogin( );
+      this.createFriends( );
 
     },
 
@@ -99,6 +100,16 @@ $(function(){
         router: this.router
       });
 
+    },
+    
+    createFriends: function( ) {
+      
+      this.views.friends = new BroLarm.View.FriendsView({
+        model: this.models.userManager.xboxUser,
+        collection: this.models.userManager.friendCollection,
+        router: this.router
+      });
+      
     },
 
     resetViews: function( ) {
