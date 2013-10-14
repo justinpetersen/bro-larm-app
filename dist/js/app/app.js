@@ -45,7 +45,7 @@ $(function(){
 
       this.models.userManager = new BroLarm.Model.BroLarmUserManager( );
       this.listenTo( this.models.userManager, 'onResetUser', $.proxy( this.onResetUser, this ) );
-      this.models.userManager.authorizeUser( );
+      // this.models.userManager.authorizeUser( );
 
       this.createNav( );
       this.createXboxLogin( );

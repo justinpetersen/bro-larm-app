@@ -17,7 +17,8 @@ $(function(){
         gamertag: '',
         avatar: '',
         presence: '',
-        online: false
+        online: false,
+        selected: false
       };
 
     },

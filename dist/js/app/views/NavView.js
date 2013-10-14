@@ -46,7 +46,6 @@ $(function(){
     render: function( ) {
 
       console.log( 'BroLarm.View.NavView.render( )' );
-      console.log( 'id: ' + this.model.id );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 

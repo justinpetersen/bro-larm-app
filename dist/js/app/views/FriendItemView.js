@@ -7,6 +7,18 @@ $(function(){
     tagName: 'li',
 
     className: 'list-group-item',
+    
+    events: {
+      "click .friend-select": "onFriendSelect",
+    },
+    
+    onFriendSelect: function( ) {
+
+      console.log( 'BroLarm.View.FriendItemView.onFriendSelect( )' );
+      
+      this.toggleFriendSelected( );
+      
+    },
 
     initialize: function( ) {
 
@@ -24,6 +36,12 @@ $(function(){
 
       return this;
 
+    },
+    
+    toggleFriendSelected: function( ) {
+      
+      this.model.set( 'selected', !this.model.get( 'selected') );
+      
     }
 
   });
