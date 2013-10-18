@@ -29,6 +29,8 @@ $(function(){
       console.log( 'BroLarm.View.FriendsView.initialize( )' );
       
       this.listenTo( this.collection, 'add', $.proxy( this.onFriendAdded, this ) );
+      
+      // TODO: Look at the best events to trigger clearing the friends list
       this.listenTo( this.collection, 'request', $.proxy( this.onFriendsReset, this ) );
       this.listenTo( this.collection, 'reset', $.proxy( this.onFriendsReset, this ) );
 
@@ -49,6 +51,8 @@ $(function(){
     renderFriend: function( model ) {
 
       console.log( 'BroLarm.View.FriendsView.renderFriend( )' );
+
+      $( '#friends-heading' ).show( );
       
       var view = new BroLarm.View.FriendItemView( { model: model } );
       $( '#friend-list' ).append( view.render().el );
@@ -57,6 +61,7 @@ $(function(){
     
     clearFriends: function( ) {
       
+      $( '#friends-heading' ).hide( );
       $( '#friend-list' ).empty( );
       
     }

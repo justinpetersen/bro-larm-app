@@ -49,33 +49,13 @@ $(function(){
 
       console.log( 'BroLarm.View.GamerLoginView.onModelChanged( )' );
 
-      // this.stopLoader( );
-      // this.checkShowGamerProfile( );
-      // this.clearFriends( );
-
       this.render( );
 
     },
 
-    // onFriendAdded: function( model ) {
-
-    //   console.log( 'BroLarm.View.GamerLoginView.onFriendAdded( )' );
-
-    //   this.renderFriend( model );
-
-    // },
-
     initialize: function( options ) {
 
       console.log( 'BroLarm.View.GamerLoginView.initialize( )' );
-
-      // this.gamerProfileView = new GamerProfileMainView( { model: this.model } );
-      // $( '#gamer-profile-container' ).html( this.gamerProfileView.render( ).el );
-
-      // Set up events
-      // this.listenTo( this.model, 'change', this.onModelChanged );
-      // this.listenTo( this.model.friendsCollection, 'add', this.onFriendAdded );
-      // this.listenTo( this.gamerProfileView, 'onSignOut', this.onSignOut );
 
       // If the model is being updated, then clean up and replace the old model with the new model
       if ( options.model ) {
@@ -118,22 +98,6 @@ $(function(){
 
     },
 
-    // renderFriend: function( model ) {
-
-    //   $( '#friends-heading' ).fadeIn( 200 );
-    //   $( '#friends-container' ).fadeIn( );
-    //   var view = new GamerProfileItemView( { model: model } );
-    //   $( '#friends-container' ).append( view.render().el );
-
-    // },
-
-    // clearFriends: function( ) {
-
-    //   $( '#friends-heading' ).hide( );
-    //   $( '#friends-container' ).empty( );
-
-    // },
-
     validateForm: function( ) {
 
       // Assume that the form entries are valid
@@ -166,11 +130,12 @@ $(function(){
     },
 
     signOut: function( ) {
+      
+      this.model.set( this.model.defaults( ) );
 
       $( '#gamertag' ).val( '' );
       $( '#xbox-login-form' ).fadeIn( );
       $( '#xbox-profile' ).hide( );
-      // this.clearFriends( );
 
     },
 

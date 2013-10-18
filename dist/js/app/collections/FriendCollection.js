@@ -15,6 +15,7 @@ $(function(){
 
       // If the user's gamertag changes, then fetch their Xbox friends
       if ( this.xboxUser.hasChanged( 'gamertag') ) {
+        this.reset( );
         this.fetch( );
       }
 

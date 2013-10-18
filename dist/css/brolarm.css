@@ -84,6 +84,12 @@ body {
 
 }
 
+#friends-heading {
+
+  display: none;
+  
+}
+
 #friend-list {
   height: 368px;
   overflow: scroll;
