@@ -15,6 +15,14 @@ $(function(){
       
     },
 
+    onFriendsSync: function( ) {
+
+      console.log( 'BroLarm.Model.BroLarmUserModel.onFriendsSync( )' );
+
+      this.updateFriendsSelected( );
+
+    },
+
     defaults: function( ) {
 
       console.log( 'BroLarm.Model.BroLarmUserModel.defaults( )' );
@@ -42,7 +50,29 @@ $(function(){
       }
       this.friends = list;
       this.listenTo( this.friends, 'change', $.proxy( this.onFriendSelectToggle, this ) );
+      this.listenTo( this.friends, 'sync', $.proxy( this.onFriendsSync, this ) );
+      
+      this.updateFriendsSelected( );
 
+    },
+    
+    updateFriendsSelected: function( ) {
+
+      console.log( 'BroLarm.Model.FriendCollection.updateFriendsSelected( )' );
+      
+      var selected = this.get( 'selectedFriends' );
+      
+      if ( selected ) {
+      
+        for ( var i = 0; i < selected.length; i++ ) {
+          var friend = this.friends.findWhere( { gamertag: selected[ i ] } )
+          if ( friend ) {
+            friend.set( 'selected', true );
+          }
+        }
+      
+      }
+      
     },
     
     setFriendSelected: function( model ) {

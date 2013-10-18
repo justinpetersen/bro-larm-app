@@ -92,6 +92,7 @@ $(function(){
       // Link this Bro-Larm user with his friends collection, so that selected friends can be saved
       this.friendCollection.setXboxUser( this.xboxUser );
       this.broLarmUser.setFriends( this.friendCollection );
+      
     },
     
     pollFirebaseReady: function( ) {

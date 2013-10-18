@@ -16,11 +16,21 @@ $(function(){
       
     },
 
+    onFriendsReset: function( eventName ) {
+
+      console.log( 'BroLarm.View.FriendsView.onFriendsReset( )' );
+
+      this.clearFriends( );
+
+    },
+
     initialize: function( options ) {
 
       console.log( 'BroLarm.View.FriendsView.initialize( )' );
       
       this.listenTo( this.collection, 'add', $.proxy( this.onFriendAdded, this ) );
+      this.listenTo( this.collection, 'request', $.proxy( this.onFriendsReset, this ) );
+      this.listenTo( this.collection, 'reset', $.proxy( this.onFriendsReset, this ) );
 
       this.render( );
 
@@ -43,6 +53,12 @@ $(function(){
       var view = new BroLarm.View.FriendItemView( { model: model } );
       $( '#friend-list' ).append( view.render().el );
 
+    },
+    
+    clearFriends: function( ) {
+      
+      $( '#friend-list' ).empty( );
+      
     }
 
   });
