@@ -11,9 +11,9 @@ $(function(){
 
     router: null,
 
-    currentPage: 'settings',
+    currentPage: 'home',
 
-    el: $('#app'),
+    el: $ ('#app' ),
 
     onLogin: function( ) {
 
@@ -31,6 +31,18 @@ $(function(){
 
     },
 
+    onFacebookLogin: function( ) {
+
+      this.setPage( 'settings' );
+
+    },
+
+    onFacebookLogout: function( ) {
+
+      this.setPage( 'home' );
+
+    },
+
     onResetUser: function( ) {
 
       console.log( 'BroLarm.View.Controller.onResetUser( )' );
@@ -44,38 +56,56 @@ $(function(){
       console.log( 'BroLarm.View.Controller.initialize( )' );
 
       this.models.userManager = new BroLarm.Model.BroLarmUserManager( );
+      this.listenTo( this.models.userManager, 'onFacebookLogin', $.proxy( this.onFacebookLogin, this ) );
+      this.listenTo( this.models.userManager, 'onFacebookLogout', $.proxy( this.onFacebookLogout, this ) );
       this.listenTo( this.models.userManager, 'onResetUser', $.proxy( this.onResetUser, this ) );
-      // this.models.userManager.authorizeUser( );
 
       this.createNav( );
+      this.createHome( );
       this.createXboxLogin( );
       this.createFriends( );
+      
+      this.render( );
 
+    },
+    
+    setPage: function( page ) {
+
+      console.log( 'BroLarm.View.Controller.setPage( ' + page + ' )' );
+      
+      this.currentPage = page;
+      this.render( );
+      
     },
 
     render: function( ) {
 
       console.log( 'BroLarm.View.Controller.render( )' );
 
-      // switch ( this.currentPage ) {
-      //   case 'home':
-      //     this.views.home = new BroLarm.View.HomeView({
-      //       model: this.models.userManager.facebookUser,
-      //       router: this.router
-      //     });
-      //     break;
-      //   case 'settings':
-      //     this.views.settings = new BroLarm.View.XboxLoginView({
-      //       model: this.models.userManager.xboxUser,
-      //       router: this.router
-      //     });
-      //     break;
-      //   default:
-      //     break;
-      // }
+      switch ( this.currentPage ) {
+        case 'home':
+          $( '#home-container' ).show( );
+          $( '#xbox-container' ).hide( );
+          break;
+        case 'settings':
+          $( '#home-container' ).hide( );
+          $( '#xbox-container' ).show( );
+          break;
+        default:
+          break;
+      }
 
       return this;
 
+    },
+    
+    createHome: function( ) {
+      
+      this.views.home = new BroLarm.View.HomeView({
+        model: this.models.userManager.facebookUser,
+        router: this.router
+      });
+      
     },
 
     createNav: function( ) {

@@ -45,6 +45,14 @@ $(function(){
 
     },
 
+    onModelRequest: function( e ) {
+
+      console.log( 'BroLarm.View.GamerLoginView.onModelRequest( )' );
+
+      this.render( );
+
+    },
+
     onModelChanged: function( e ) {
 
       console.log( 'BroLarm.View.GamerLoginView.onModelChanged( )' );
@@ -64,6 +72,7 @@ $(function(){
       }
 
       this.listenTo( this.model, 'change', this.onModelChanged );
+      this.listenTo( this.model, 'request', this.onModelRequest );
 
       this.render( );
 
@@ -76,24 +85,47 @@ $(function(){
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
       this.laddaSubmit = Ladda.create( $( '#gamertag-submit' )[ 0 ] );
-
       this.stopLoader( );
+      this.initSpinner( );
+      
       this.checkShowGamerProfile( );
 
       return this;
 
     },
+    
+    initSpinner: function( ) {
+
+      console.log( '*BroLarm.View.GamerLoginView.initSpinner( )' );
+      
+      $( '#xbox-spinner' ).waiting({ 
+          className: 'waiting-circles', 
+          elements: 8, 
+          radius: 20, 
+          auto: true 
+      });
+      
+    },
 
     checkShowGamerProfile: function( ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.renderGamerProfile( )' );
-
+      console.log( '*BroLarm.View.GamerLoginView.renderGamerProfile( )' );
+      
+      // Logged in to Xbox
       if ( this.model.get( 'avatar' ) != '' ) {
         $( '#xbox-login-form' ).hide( );
         $( '#xbox-profile' ).fadeIn( );
+        $( '#xbox-spinner-container' ).hide( );
+      // Logging in to Xbox
+      } else if ( this.model.get( 'gamertag' ) != '' ) {
+        $( '#xbox-profile' ).hide( );
+        $( '#xbox-login-form' ).hide( );
+        $( '#xbox-spinner-container' ).show( );
+      // Need to log in to Xbox
       } else {
         $( '#xbox-profile' ).hide( );
         $( '#xbox-login-form' ).fadeIn( );
+        $( '#xbox-spinner-container' ).hide( );
       }
 
     },

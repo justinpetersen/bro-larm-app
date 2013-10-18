@@ -2,7 +2,7 @@ $(function(){
 
   BroLarm.View.HomeView = Backbone.View.extend({
     
-    el: $('#content-container'),
+    el: $('#home-container'),
     
     template: _.template( $( '#home-template' ).html( ) ),
 

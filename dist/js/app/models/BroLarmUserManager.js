@@ -41,6 +41,14 @@ $(function(){
 
     },
     
+    onXboxUserChange: function( ) {
+      
+      if ( this.xboxUser.hasChanged( 'gamertag') ) {
+        this.broLarmUser.set( 'gamertag', this.xboxUser.get( 'gamertag' ) );
+      }
+      
+    },
+    
     initialize: function( ) {
 
       console.log( 'BroLarm.Model.BroLarmUserManager.initialize( )' );
@@ -62,6 +70,8 @@ $(function(){
       this.facebookUser = new BroLarm.Model.FacebookUserModel( );
       this.xboxUser = new BroLarm.Model.XboxUserModel( );
       
+      this.listenTo( this.xboxUser, 'change', $.proxy( this.onXboxUserChange, this ) );
+      
       // TODO: Figure out if this is necessary
       if ( this.friendCollection ) {
         this.friendCollection.setXboxUser( this.xboxUser );
@@ -69,14 +79,6 @@ $(function(){
 
       // TODO: Figure out if this is the right place for this
       this.trigger( 'onResetUser' );
-
-    },
-
-    resetUser: function( ) {
-
-      console.log( 'BroLarm.Model.BroLarmUserManager.resetUser( )' );
-
-      this.createDefaultUser( );
 
     },
 
@@ -128,6 +130,11 @@ $(function(){
         this.broLarmUser = lookedUpUser;
         this.broLarmUser.setFriends( this.friendCollection );
         this.facebookUser = this.facebookUserCollection.get( this.broLarmUser.id );
+        
+        if ( this.broLarmUser.get( 'gamertag' ) != '' ) {
+          this.xboxUser.set( 'gamertag', this.broLarmUser.get( 'gamertag' ) );
+          this.xboxUser.fetch( );
+        }
 
         this.trigger( 'onResetUser' );
 
@@ -142,6 +149,18 @@ $(function(){
         this.facebookUserCollection.add( this.facebookUser );
 
       }
+      
+      this.trigger( 'onFacebookLogin' );
+
+    },
+
+    resetUser: function( ) {
+
+      console.log( 'BroLarm.Model.BroLarmUserManager.resetUser( )' );
+
+      this.createDefaultUser( );
+      
+      this.trigger( 'onFacebookLogout' );
 
     },
 
