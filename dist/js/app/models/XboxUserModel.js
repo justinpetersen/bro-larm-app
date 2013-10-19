@@ -7,8 +7,6 @@ $(function(){
 
     idAttribute: 'gamertag',
 
-    // friendCollection: null,
-
     initialize: function( ) {
 
       console.log( 'BroLarm.Model.XboxUserModel.initialize( )' );
@@ -37,8 +35,6 @@ $(function(){
     parse: function( response, options ) {
 
       console.log( 'BroLarm.Model.XboxUserModel.parse( )' );
-
-      // this.friendCollection.fetch( );
 
       return {
         gamertag: response.data.gamertag,

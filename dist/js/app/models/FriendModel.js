@@ -29,7 +29,7 @@ $(function(){
 
       return {
         gamertag: response.gamertag,
-        avatar: response.gamerpic.large,
+        avatar: response.gamerpic.small,
         presence: response.status,
         online: response.online
       };

@@ -1,27 +1,16 @@
 body {
-
   padding-top: 50px;
-
 }
 
 .navbar-brand {
-
   background-image: url( '../images/cod-logo.jpg' );
   width: 179px;
   height: 52px;
-
-}
-
-.login-form {
-  width: 330px;
-  padding: 15px;
-  margin: 0 auto;
 }
 
 .gamer-profile {
-  width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+  margin-top: 30px;
+  margin-left: 10px;
 }
 
 .login-form {
@@ -31,14 +20,12 @@ body {
 }
 
 .list-container {
-  width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .friend-item {
   clear: both;
-  height: 40px;
+  height: 63px;
 }
 
 .left {
@@ -50,12 +37,14 @@ body {
   margin-right: 8px;
 }
 
-.stats-copy {
-  line-height: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 200px;
+.gamer-stats {
+  position: relative;
+  width: 100%;
+}
+
+.gamertag-heading {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #fb-login-button {
@@ -73,8 +62,6 @@ body {
 #fb-profile-pic {
 
   display: none;
-  width: 36px;
-  height: 36px;
 
 }
 
@@ -94,12 +81,6 @@ body {
   display: none;
   
 }
-
-#friend-list {
-  height: 368px;
-  overflow: scroll;
-}
-
 .spinner-container {
   
   width: 50px;
@@ -111,6 +92,7 @@ body {
 #xbox-spinner-container {
   
   display: none;
+  margin-top: 20px;
   
 }
 
