@@ -38,7 +38,7 @@
 	        <div class='navbar-collapse collapse'>
 	          <div class='navbar-form navbar-right'>
 	            <button id='fb-login-button' class='btn btn-primary'>Login with Facebook</button>
-							<button id='fb-logout-button' class='btn btn-primary btn-xs'>Logout</button>
+							<button id='fb-logout-button' class='btn btn-primary btn-sm'>Logout</button>
 							<img id='fb-profile-pic' class='img-rounded' src='<%= id == "" ? "https://graph.facebook.com/257756954235461/picture" : "https://graph.facebook.com/" + id + "/picture" %>' />
 	          </div>
 	        </div>
@@ -58,7 +58,7 @@
 				<div class='form-group'>
 	      	<input type='text' class='form-control' id='gamertag' placeholder='Gamertag' autofocus>
 				</div>
-				<button class='btn btn-lg btn-primary btn-block ladda-button' id='gamertag-submit' data-style='slide-up' disabled><span class='ladda-label'>Submit</span></button>
+				<button class='btn btn-lg btn-primary btn-block ladda-button' id='gamertag-submit' data-style='slide-up' disabled><span class='ladda-label'>Save</span></button>
 	    </div>
 			<div class='spinner-container' id='xbox-spinner-container'>
 				<div id='xbox-spinner'></div>
@@ -68,7 +68,7 @@
         <h3 class='gamertag-heading'><%= gamertag %></h3>
 				<p class='lead'><%= presence %></p>
         <p>
-          <button type='button' class='btn btn-primary btn-xs' id='btn-sign-out'>Sign out</button>
+          <button type='button' class='btn btn-primary btn-sm' id='btn-sign-out'>Change</button>
         </p>
       </div>
     </script>
