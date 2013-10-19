@@ -10,8 +10,10 @@ body {
 
 .gamer-profile {
   padding-top: 30px;
-  padding-left: 10px;
+  padding-left: 36px;
   padding-bottom: 10px;
+  background-color: #333;
+  color: #fff;
 }
 
 .login-form {
