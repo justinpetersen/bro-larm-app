@@ -64,12 +64,14 @@
 				<div id='xbox-spinner'></div>
 			</div>
       <div class='gamer-profile' id='xbox-profile'>
-        <img src='<%= avatar %>' class='img-rounded pull-left friend-attribute' />
-        <h3 class='gamertag-heading'><%= gamertag %></h3>
-				<p class='lead'><%= presence %></p>
-        <p>
-          <button type='button' class='btn btn-primary btn-sm' id='btn-sign-out'>Change</button>
-        </p>
+				<div class='container'>
+	        <img src='<%= avatar %>' class='img-rounded pull-left friend-attribute' />
+	        <h3 class='gamertag-heading'><%= gamertag %></h3>
+					<p class='lead'><%= presence %></p>
+	        <p>
+	          <button type='button' class='btn btn-primary btn-sm' id='btn-sign-out'>Change</button>
+	        </p>
+				</div>
       </div>
     </script>
 
@@ -81,19 +83,16 @@
 
     <script type='text/template' id='friend-item-template'>
 			<div class='friend-item'>
-				<!--div class='checkbox left'>
-					<label>
-						<input class='friend-select' type='checkbox' <%= selected ? 'checked="checked"' : '' %> />
-					</label>
-				</div-->
-				<div class='left friend-attribute'>
-					<input type='checkbox' class='regular-checkbox big-checkbox friend-select' id='checkbox-id' <%= selected ? 'checked="checked"' : '' %> /><label id='checkbox-label-id' for="checkbox-id"></label>
+				<div class='container'>
+					<div class='left friend-attribute'>
+						<input type='checkbox' class='regular-checkbox big-checkbox friend-select' id='checkbox-id' <%= selected ? 'checked="checked"' : '' %> /><label id='checkbox-label-id' for="checkbox-id"></label>
+					</div>
+					<div class='left friend-attribute'>
+						<img src = '<%= avatar %>' class='img-rounded' />
+					</div>
+					<h3 class='gamertag-heading'><%= gamertag %></h3>
+					<p class='lead'><%= presence %></p>
 				</div>
-				<div class='left friend-attribute'>
-					<img src = '<%= avatar %>' class='img-rounded' />
-				</div>
-				<h3 class='gamertag-heading'><%= gamertag %></h3>
-				<p class='lead'><%= presence %></p>
 			</div>
     </script>
 
