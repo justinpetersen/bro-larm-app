@@ -35,9 +35,20 @@ body {
   height: 63px;
 }
 
+.avatar-sm {
+  width: 32px
+  height: 32px;
+}
+
 .left {
   display: block;
   float: left;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .friend-attribute {
@@ -100,7 +111,7 @@ body {
 #xbox-spinner-container {
   
   display: none;
-  margin-top: 20px;
+  margin-top: 13px;
   
 }
 
