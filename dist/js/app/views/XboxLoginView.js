@@ -17,7 +17,7 @@ $(function(){
 
     onGamertagKeyPress: function( e ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.onGamertagEnter( )' );
+      console.log( 'BroLarm.View.XboxLoginView.onGamertagEnter( )' );
 
       // Validate the form on any key press
       var valid = this.validateForm( );
@@ -31,7 +31,7 @@ $(function(){
 
     onGamertagSubmit: function( e ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.onGamertagSubmit( )' );
+      console.log( 'BroLarm.View.XboxLoginView.onGamertagSubmit( )' );
 
       this.loadGamerProfile( $( '#gamertag' ).val( ) );
 
@@ -39,7 +39,7 @@ $(function(){
 
     onSignOut: function( e ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.onSignOut( )' );
+      console.log( 'BroLarm.View.XboxLoginView.onSignOut( )' );
 
       this.signOut( );
 
@@ -47,7 +47,7 @@ $(function(){
 
     onModelRequest: function( e ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.onModelRequest( )' );
+      console.log( 'BroLarm.View.XboxLoginView.onModelRequest( )' );
 
       this.render( );
 
@@ -55,7 +55,7 @@ $(function(){
 
     onModelChanged: function( e ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.onModelChanged( )' );
+      console.log( 'BroLarm.View.XboxLoginView.onModelChanged( )' );
 
       this.render( );
 
@@ -63,7 +63,7 @@ $(function(){
 
     initialize: function( options ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.initialize( )' );
+      console.log( 'BroLarm.View.XboxLoginView.initialize( )' );
 
       // If the model is being updated, then clean up and replace the old model with the new model
       if ( options.model ) {
@@ -80,7 +80,7 @@ $(function(){
 
     render: function( ) {
 
-      console.log( 'BroLarm.View.GamerLoginView.render( )' );
+      console.log( 'BroLarm.View.XboxLoginView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
@@ -96,7 +96,7 @@ $(function(){
     
     initSpinner: function( ) {
 
-      console.log( '*BroLarm.View.GamerLoginView.initSpinner( )' );
+      console.log( 'BroLarm.View.XboxLoginView.initSpinner( )' );
       
       $( '#xbox-spinner' ).waiting({ 
           className: 'waiting-circles', 
@@ -109,7 +109,7 @@ $(function(){
 
     checkShowGamerProfile: function( ) {
 
-      console.log( '*BroLarm.View.GamerLoginView.renderGamerProfile( )' );
+      console.log( 'BroLarm.View.XboxLoginView.renderGamerProfile( )' );
       
       // Logged in to Xbox
       if ( this.model.get( 'avatar' ) != '' ) {

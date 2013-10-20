@@ -33,6 +33,11 @@ $(function(){
       console.log( 'BroLarm.View.FriendItemView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
+      
+      $( '#checkbox-id' ).attr( 'id', this.model.get( 'gamertag' ) );
+      var checkboxLabel = $( '#checkbox-label-id' );
+      checkboxLabel.attr( 'id', this.model.get( 'gamertag' ) );
+      checkboxLabel.attr( 'for', this.model.get( 'gamertag' ) );
 
       return this;
 
