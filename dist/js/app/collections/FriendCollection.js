@@ -26,7 +26,7 @@ $(function(){
           this.xboxUser,
           'change',
           $.proxy(this.onXboxUserChange, this)
-      );
+     );
     },
 
     parse: function(response, options) {
@@ -34,7 +34,7 @@ $(function(){
     },
 
     url: function() {
-      return this.urlRoot + '?gamertag=' + this.xboxUser.get( 'gamertag' );
+      return this.urlRoot + '?gamertag=' + this.xboxUser.get('gamertag');
     }
 
   });

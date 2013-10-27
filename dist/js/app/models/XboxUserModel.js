@@ -7,42 +7,26 @@ $(function(){
 
     idAttribute: 'gamertag',
 
-    initialize: function() {
-
-      console.log( 'brolarm.model.XboxUserModel.initialize( )' );
-
-    },
-
     url: function() {
-
-      return this.urlRoot + '?gamertag=' + this.get( 'gamertag' );
-
+      return this.urlRoot + '?gamertag=' + this.get('gamertag');
     },
 
     defaults: function() {
-
-      console.log( 'brolarm.model.XboxUserModel.parse( )' );
-
       return {
         gamertag: '',
         avatar: '',
         presence: '',
         online: false
       };
-
     },
 
-    parse: function( response, options ) {
-
-      console.log( 'brolarm.model.XboxUserModel.parse( )' );
-
+    parse: function(response, options) {
       return {
         gamertag: response.data.gamertag,
         avatar: response.data.avatar.tile,
         presence: response.data.presence,
         online: response.data.online
       };
-
     }
 
   });

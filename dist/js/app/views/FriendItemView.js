@@ -2,7 +2,7 @@ $(function(){
 
   brolarm.view.FriendItemView = Backbone.View.extend({
 
-    template: _.template( $( '#friend-item-template' ).html( ) ),
+    template: _.template($('#friend-item-template').html()),
 
     tagName: 'li',
 
@@ -13,40 +13,26 @@ $(function(){
     },
     
     onFriendSelect: function() {
-
-      console.log( 'brolarm.view.FriendItemView.onFriendSelect( )' );
-      
-      this.toggleFriendSelected( );
-      
+      this.toggleFriendSelected();
     },
 
     initialize: function() {
-
-      console.log( 'brolarm.view.FriendItemView.initialize( )' );
-
-      this.listenTo( this.model, 'change', this.render );
-
+      this.listenTo(this.model, 'change', this.render);
     },
 
     render: function() {
-
-      console.log( 'brolarm.view.FriendItemView.render( )' );
-
-      this.$el.html( this.template( this.model.toJSON( ) ) );
+      this.$el.html(this.template(this.model.toJSON()));
       
-      $( '#checkbox-id' ).attr( 'id', this.model.get( 'gamertag' ) );
-      var checkboxLabel = $( '#checkbox-label-id' );
-      checkboxLabel.attr( 'id', this.model.get( 'gamertag' ) );
-      checkboxLabel.attr( 'for', this.model.get( 'gamertag' ) );
+      $('#checkbox-id').attr('id', this.model.get('gamertag'));
+      var checkboxLabel = $('#checkbox-label-id');
+      checkboxLabel.attr('id', this.model.get('gamertag'));
+      checkboxLabel.attr('for', this.model.get('gamertag'));
 
       return this;
-
     },
     
     toggleFriendSelected: function() {
-      
-      this.model.set( 'selected', !this.model.get( 'selected') );
-      
+      this.model.set('selected', !this.model.get('selected'));
     }
 
   });

@@ -3,16 +3,7 @@ $(function(){
 
   brolarm.model.FriendModel = Backbone.Model.extend({
 
-    initialize: function() {
-
-      console.log( 'brolarm.model.FriendModel.initialize( )' );
-
-    },
-
     defaults: function() {
-
-      console.log( 'brolarm.model.FriendModel.defaults( )' );
-
       return {
         gamertag: '',
         avatar: '',
@@ -20,20 +11,15 @@ $(function(){
         online: false,
         selected: false
       };
-
     },
 
-    parse: function( response, options ) {
-
-      console.log( 'brolarm.model.FriendModel.parse( )' );
-
+    parse: function(response, options) {
       return {
         gamertag: response.gamertag,
         avatar: response.gamerpic.small,
         presence: response.status,
         online: response.online
       };
-
     }
 
   });

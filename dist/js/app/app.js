@@ -84,14 +84,14 @@ $(function(){
      * @return {brolarm.view.Controller} This view.
      */
     render: function() {
-      switch ( this.currentPage ) {
+      switch (this.currentPage) {
         case 'home':
-          $( '#home-container' ).show( );
-          $( '#xbox-container' ).hide( );
+          $('#home-container').show();
+          $('#xbox-container').hide();
           break;
         case 'settings':
-          $( '#home-container' ).hide( );
-          $( '#xbox-container' ).show( );
+          $('#home-container').hide();
+          $('#xbox-container').show();
           break;
         default:
           break;
@@ -140,17 +140,17 @@ $(function(){
           this.models.userManager,
           'onFacebookLogin',
           $.proxy(this.onFacebookLogin, this)
-      );
+     );
       this.listenTo(
           this.models.userManager,
           'onFacebookLogout',
           $.proxy(this.onFacebookLogout, this)
-      );
+     );
       this.listenTo(
           this.models.userManager,
           'onResetUser',
-          $.proxy(this.onResetUser, this )
-      );
+          $.proxy(this.onResetUser, this)
+     );
     },
     
     /**
@@ -172,8 +172,8 @@ $(function(){
         router: this.router
       });
 
-      this.listenTo( this.views.nav, 'onLogin', $.proxy(this.onLogin, this));
-      this.listenTo( this.views.nav, 'onLogout', $.proxy(this.onLogout, this));
+      this.listenTo(this.views.nav, 'onLogin', $.proxy(this.onLogin, this));
+      this.listenTo(this.views.nav, 'onLogout', $.proxy(this.onLogout, this));
     },
     
     /**
@@ -204,13 +204,13 @@ $(function(){
      */
     resetViews: function() {
       // If the nav exists, then initialize it with the new Facebook user
-      if ( this.views.nav ) {
-        this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
+      if (this.views.nav) {
+        this.views.nav.initialize({model: this.models.userManager.facebookUser});
       }
 
       // If the Xbox login exists, then initialize it with the new Xbox user
-      if ( this.views.xboxLogin ) {
-        this.views.xboxLogin.initialize( { model: this.models.userManager.xboxUser } );
+      if (this.views.xboxLogin) {
+        this.views.xboxLogin.initialize({model: this.models.userManager.xboxUser});
       }
 
     }

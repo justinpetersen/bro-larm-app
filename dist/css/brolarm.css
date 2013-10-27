@@ -3,7 +3,7 @@ body {
 }
 
 .navbar-brand {
-  background-image: url( '../images/cod-logo.png' );
+  background-image: url('../images/cod-logo.png');
   background-size: 182px 67px;
   background-repeat: no-repeat;
   width: 171px;
@@ -66,22 +66,16 @@ body {
 }
 
 #fb-login-button {
-
   display: none;
-
 }
 
 #fb-logout-button {
-
   display: none;
   margin-right: 10px;
-
 }
 
 #fb-profile-pic {
-
   display: none;
-
 }
 
 #home-container {
@@ -90,29 +84,21 @@ body {
 }
 
 #xbox-profile {
-
   display: none;
-
 }
 
 #friends-heading {
-
   display: none;
-  
 }
 .spinner-container {
-  
   width: 50px;
   padding-top: 20px;
   margin: 0 auto;
-  
 }
 
 #xbox-spinner-container {
-  
   display: none;
   margin-top: 10px;
-  
 }
 
 /* Spinner */
