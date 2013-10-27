@@ -4,15 +4,9 @@ $(function(){
 
     model: BroLarm.Model.XboxUserModel,
 
-    firebase: new Firebase( 'https://cod-bro-larm.firebaseio.com/xbox-users' ),
+    firebase: new Firebase('https://cod-bro-larm.firebaseio.com/xbox-users'),
 
-    url: '/xbox-users',
-
-    initialize: function( ) {
-
-      console.log( 'BroLarm.Collection.XboxUserCollection.initialize( )' );
-
-    }
+    url: '/xbox-users'
 
   });
 
