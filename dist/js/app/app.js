@@ -1,87 +1,87 @@
 $(function(){
   'use strict';
 
+  /**
+   * The main Bro-Larm class, responsible for the initializing the user manager
+   * and managing the layout of the UI.
+   * @constructor
+   * @extends Backbone.View
+   */
   BroLarm.View.Controller = Backbone.View.extend({
-
-    userManager: null,
-
-    models: { },
-    collections: { },
-    views: { },
-
-    router: null,
-
-    currentPage: 'home',
-
-    el: $ ('#app' ),
-
-    onLogin: function( ) {
-
-      console.log( 'BroLarm.View.Controller.onLogin( )' );
-
-      this.models.userManager.login( );
-
-    },
-
-    onLogout: function( ) {
-
-      console.log( 'BroLarm.View.Controller.onLogout( )' );
-
-      this.models.userManager.logout( );
-
-    },
-
-    onFacebookLogin: function( ) {
-
-      this.setPage( 'settings' );
-
-    },
-
-    onFacebookLogout: function( ) {
-
-      this.setPage( 'home' );
-
-    },
-
-    onResetUser: function( ) {
-
-      console.log( 'BroLarm.View.Controller.onResetUser( )' );
-
-      this.resetViews( );
-
-    },
-
-    initialize: function( ) {
-
-      console.log( 'BroLarm.View.Controller.initialize( )' );
-
-      this.models.userManager = new BroLarm.Model.BroLarmUserManager( );
-      this.listenTo( this.models.userManager, 'onFacebookLogin', $.proxy( this.onFacebookLogin, this ) );
-      this.listenTo( this.models.userManager, 'onFacebookLogout', $.proxy( this.onFacebookLogout, this ) );
-      this.listenTo( this.models.userManager, 'onResetUser', $.proxy( this.onResetUser, this ) );
-
-      this.createNav( );
-      this.createHome( );
-      this.createXboxLogin( );
-      this.createFriends( );
-      
-      this.render( );
-
+    
+    // PRIVATE PROPERTIES
+    
+    /* The user manager maintains the state of the Facebook user and the linked
+     * Xbox LIVE user. All user state events come through the user manager.
+     */
+    models: {
+      userManager: null
     },
     
-    setPage: function( page ) {
-
-      console.log( 'BroLarm.View.Controller.setPage( ' + page + ' )' );
-      
-      this.currentPage = page;
-      this.render( );
-      
+    /* All child views are created at initialization, then just shown or hidden
+     * as the application changes state.
+     */
+    views: {
+      home: null,
+      nav: null,
+      xboxLogin: null,
+      friends: null
     },
 
-    render: function( ) {
+    // The current page is either "home" or "settings"
+    currentPage: 'home',
 
-      console.log( 'BroLarm.View.Controller.render( )' );
+    /* The DOM element that HTML would be inserted into on render. Since all
+     * the UI is contained in the child views, this is never used.
+     */
+    el: $ ('#app'),
+    
+    // PRIVATE EVENT HANDLERS
+    
+    /**
+     * Event handler for "Login" button clicks.
+     */
+    onLogin: function() {
+      this.models.userManager.login();
+    },
+    
+    /**
+     * Event handler for "Logout" button clicks.
+     */
+    onLogout: function() {
+      this.models.userManager.logout();
+    },
 
+    /**
+     * Event handler for Facebook login.
+     */
+    onFacebookLogin: function() {
+      this.setPage('settings');
+    },
+
+    /**
+     * Event handler for Facebook logout.
+     */
+    onFacebookLogout: function() {
+      this.setPage('home');
+    },
+    
+
+    /**
+     * Event handler for when the user is reset. This would be fired when the
+     * default anonymous user is replaced with the logged in Facebook user, or
+     * when the user logs out and is replaced with the default anonymous user.
+     */
+    onResetUser: function() {
+      this.resetViews();
+    },
+
+    // PUBLIC METHODS
+
+    /**
+     * Shows or hides UI views depending on the current application state.
+     */
+    render: function() {
       switch ( this.currentPage ) {
         case 'home':
           $( '#home-container' ).show( );
@@ -96,67 +96,119 @@ $(function(){
       }
 
       return this;
-
     },
     
-    createHome: function( ) {
+    /**
+     * Sets the state of the application and renders the view.
+     * @param {string} page Mandatory value for which state to render. There
+     *     are only two possible states: "home" and "settings."
+     */
+    setPage: function(page) {
+      this.currentPage = page;
+      this.render();
+    },
+    
+    // PRIVATE METHODS
+
+     /**
+      * Initializes models and views and renders the initial state of the
+      * application.
+      */
+    initialize: function() {
+      // Create models
+      this.initUserManager();
       
+      // Create views
+      this.createNav();
+      this.createHome();
+      this.createXboxLogin();
+      this.createFriends();
+      
+      // Render the application
+      this.render();
+    },
+
+    /**
+     * Initializes the user manager and listens for user manager state change
+     * events.
+     */
+    initUserManager: function() {
+      this.models.userManager = new BroLarm.Model.BroLarmUserManager();
+      this.listenTo(
+          this.models.userManager,
+          'onFacebookLogin',
+          $.proxy(this.onFacebookLogin, this)
+      );
+      this.listenTo(
+          this.models.userManager,
+          'onFacebookLogout',
+          $.proxy(this.onFacebookLogout, this)
+      );
+      this.listenTo(
+          this.models.userManager,
+          'onResetUser',
+          $.proxy(this.onResetUser, this )
+      );
+    },
+    
+    /**
+     * Initializes the home page view.
+     */
+    createHome: function() {
       this.views.home = new BroLarm.View.HomeView({
         model: this.models.userManager.facebookUser,
         router: this.router
       });
-      
     },
-
-    createNav: function( ) {
-
-      console.log( 'BroLarm.View.Controller.createNav( )' );
-
+    
+    /**
+     * Initializes the top navigation view.
+     */
+    createNav: function() {
       this.views.nav = new BroLarm.View.NavView({
         model: this.models.userManager.facebookUser,
         router: this.router
       });
 
-      this.listenTo( this.views.nav, 'onLogin', $.proxy( this.onLogin, this ) );
-      this.listenTo( this.views.nav, 'onLogout', $.proxy( this.onLogout, this ) );
-
+      this.listenTo( this.views.nav, 'onLogin', $.proxy(this.onLogin, this));
+      this.listenTo( this.views.nav, 'onLogout', $.proxy(this.onLogout, this));
     },
-
-    createXboxLogin: function( ) {
-
+    
+    /**
+     * Initializes the Xbox login form.
+     */
+    createXboxLogin: function() {
       this.views.xboxLogin = new BroLarm.View.XboxLoginView({
         model: this.models.userManager.xboxUser,
         router: this.router
       });
-
     },
     
-    createFriends: function( ) {
-      
+    /**
+     * Initializes the Xbox friends list.
+     */
+    createFriends: function() {
       this.views.friends = new BroLarm.View.FriendsView({
         model: this.models.userManager.xboxUser,
         collection: this.models.userManager.friendCollection,
         router: this.router
       });
-      
     },
-
-    resetViews: function( ) {
-
-      console.log( 'BroLarm.View.Controller.resetViews( )' );
-
+    
+    /**
+     * Re-initializes the top navigation and Xbox login form when the user
+     * is reset to the default anonymous user. This is necessary to update
+     * these views' local references to the Facebook and Xbox user models.
+     */
+    resetViews: function() {
       // If the nav exists, then initialize it with the new Facebook user
       if ( this.views.nav ) {
-
         this.views.nav.initialize( { model: this.models.userManager.facebookUser } );
-
       }
 
       // If the Xbox login exists, then initialize it with the new Xbox user
       if ( this.views.xboxLogin ) {
-
         this.views.xboxLogin.initialize( { model: this.models.userManager.xboxUser } );
-
       }
 
     }
