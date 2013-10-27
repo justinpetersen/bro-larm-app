@@ -18,13 +18,13 @@ $(function(){
       
     },
 
-    home: function( ) {
+    home: function() {
 
       console.log( 'BroLarm.Router.home( )' );
 
     },
 
-    settings: function( ) {
+    settings: function() {
 
       console.log( 'BroLarm.Router.settings( )' );
 
