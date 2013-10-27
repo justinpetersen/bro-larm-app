@@ -1,7 +1,7 @@
 $(function(){
   "use strict";
 
-  BroLarm.View.XboxLoginView = Backbone.View.extend({
+  brolarm.view.XboxLoginView = Backbone.View.extend({
 
     el: $( '#xbox-login-container' ),
 
@@ -17,7 +17,7 @@ $(function(){
 
     onGamertagKeyPress: function( e ) {
 
-      console.log( 'BroLarm.View.XboxLoginView.onGamertagEnter( )' );
+      console.log( 'brolarm.view.XboxLoginView.onGamertagEnter( )' );
 
       // Validate the form on any key press
       var valid = this.validateForm( );
@@ -31,7 +31,7 @@ $(function(){
 
     onGamertagSubmit: function( e ) {
 
-      console.log( 'BroLarm.View.XboxLoginView.onGamertagSubmit( )' );
+      console.log( 'brolarm.view.XboxLoginView.onGamertagSubmit( )' );
 
       this.loadGamerProfile( $( '#gamertag' ).val( ) );
 
@@ -39,7 +39,7 @@ $(function(){
 
     onSignOut: function( e ) {
 
-      console.log( 'BroLarm.View.XboxLoginView.onSignOut( )' );
+      console.log( 'brolarm.view.XboxLoginView.onSignOut( )' );
 
       this.signOut( );
 
@@ -47,7 +47,7 @@ $(function(){
 
     onModelRequest: function( e ) {
 
-      console.log( 'BroLarm.View.XboxLoginView.onModelRequest( )' );
+      console.log( 'brolarm.view.XboxLoginView.onModelRequest( )' );
 
       this.render( );
 
@@ -55,7 +55,7 @@ $(function(){
 
     onModelChanged: function( e ) {
 
-      console.log( 'BroLarm.View.XboxLoginView.onModelChanged( )' );
+      console.log( 'brolarm.view.XboxLoginView.onModelChanged( )' );
 
       this.render( );
 
@@ -63,7 +63,7 @@ $(function(){
 
     initialize: function( options ) {
 
-      console.log( 'BroLarm.View.XboxLoginView.initialize( )' );
+      console.log( 'brolarm.view.XboxLoginView.initialize( )' );
 
       // If the model is being updated, then clean up and replace the old model with the new model
       if ( options.model ) {
@@ -78,9 +78,9 @@ $(function(){
 
     },
 
-    render: function( ) {
+    render: function() {
 
-      console.log( 'BroLarm.View.XboxLoginView.render( )' );
+      console.log( 'brolarm.view.XboxLoginView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
@@ -94,9 +94,9 @@ $(function(){
 
     },
     
-    initSpinner: function( ) {
+    initSpinner: function() {
 
-      console.log( 'BroLarm.View.XboxLoginView.initSpinner( )' );
+      console.log( 'brolarm.view.XboxLoginView.initSpinner( )' );
       
       $( '#xbox-spinner' ).waiting({ 
           className: 'waiting-circles', 
@@ -107,9 +107,9 @@ $(function(){
       
     },
 
-    checkShowGamerProfile: function( ) {
+    checkShowGamerProfile: function() {
 
-      console.log( 'BroLarm.View.XboxLoginView.renderGamerProfile( )' );
+      console.log( 'brolarm.view.XboxLoginView.renderGamerProfile( )' );
       
       // Logged in to Xbox
       if ( this.model.get( 'avatar' ) != '' ) {
@@ -130,7 +130,7 @@ $(function(){
 
     },
 
-    validateForm: function( ) {
+    validateForm: function() {
 
       // Assume that the form entries are valid
       var valid = true;
@@ -161,7 +161,7 @@ $(function(){
 
     },
 
-    signOut: function( ) {
+    signOut: function() {
       
       this.model.set( this.model.defaults( ) );
 
@@ -171,14 +171,14 @@ $(function(){
 
     },
 
-    startLoader: function( ) {
+    startLoader: function() {
 
       $( '#gamertag' ).attr( 'disabled', 'disabled' );
       this.laddaSubmit.start( );
 
     },
 
-    stopLoader: function( ) {
+    stopLoader: function() {
 
       $( '#gamertag' ).removeAttr('disabled');
       this.laddaSubmit.stop( );

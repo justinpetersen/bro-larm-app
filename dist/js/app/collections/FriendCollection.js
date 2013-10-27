@@ -1,9 +1,9 @@
 $(function(){
   "use strict";
 
-  BroLarm.Collection.FriendCollection = Backbone.Collection.extend({
+  brolarm.collection.FriendCollection = Backbone.Collection.extend({
 
-    model: BroLarm.Model.FriendModel,
+    model: brolarm.model.FriendModel,
 
     xboxUser: null,
 

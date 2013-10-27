@@ -1,17 +1,17 @@
 $(function(){
   "use strict";
 
-  BroLarm.Model.FriendModel = Backbone.Model.extend({
+  brolarm.model.FriendModel = Backbone.Model.extend({
 
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.Model.FriendModel.initialize( )' );
+      console.log( 'brolarm.model.FriendModel.initialize( )' );
 
     },
 
-    defaults: function( ) {
+    defaults: function() {
 
-      console.log( 'BroLarm.Model.FriendModel.defaults( )' );
+      console.log( 'brolarm.model.FriendModel.defaults( )' );
 
       return {
         gamertag: '',
@@ -25,7 +25,7 @@ $(function(){
 
     parse: function( response, options ) {
 
-      console.log( 'BroLarm.Model.FriendModel.parse( )' );
+      console.log( 'brolarm.model.FriendModel.parse( )' );
 
       return {
         gamertag: response.gamertag,

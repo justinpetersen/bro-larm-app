@@ -1,7 +1,7 @@
 $(function(){
   "use strict";
 
-  BroLarm.Model.BroLarmUserManager = Backbone.Model.extend({
+  brolarm.model.BroLarmUserManager = Backbone.Model.extend({
 
     firebase: null,
 
@@ -20,7 +20,7 @@ $(function(){
 
     onAuthorizeUser: function( error, user ) {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.onAuthorizeUser( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.onAuthorizeUser( )' );
 
       if ( user ) {
 
@@ -41,7 +41,7 @@ $(function(){
 
     },
     
-    onXboxUserChange: function( ) {
+    onXboxUserChange: function() {
       
       if ( this.xboxUser.hasChanged( 'gamertag') ) {
         this.broLarmUser.set( 'gamertag', this.xboxUser.get( 'gamertag' ) );
@@ -49,9 +49,9 @@ $(function(){
       
     },
     
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.initialize( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.initialize( )' );
 
       this.firebase =  new Firebase( 'https://cod-bro-larm.firebaseio.com' );
 
@@ -62,13 +62,13 @@ $(function(){
 
     },
 
-    createDefaultUser: function( ) {
+    createDefaultUser: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.createDefaultUser( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.createDefaultUser( )' );
 
-      this.broLarmUser = new BroLarm.Model.BroLarmUserModel( );
-      this.facebookUser = new BroLarm.Model.FacebookUserModel( );
-      this.xboxUser = new BroLarm.Model.XboxUserModel( );
+      this.broLarmUser = new brolarm.model.BroLarmUserModel( );
+      this.facebookUser = new brolarm.model.FacebookUserModel( );
+      this.xboxUser = new brolarm.model.XboxUserModel( );
       
       this.listenTo( this.xboxUser, 'change', $.proxy( this.onXboxUserChange, this ) );
       
@@ -82,14 +82,14 @@ $(function(){
 
     },
 
-    createUserCollections: function( ) {
+    createUserCollections: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.createUserCollections( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.createUserCollections( )' );
 
-      this.broLarmUserCollection = new BroLarm.Collection.BroLarmUserCollection( );
-      this.facebookUserCollection = new BroLarm.Collection.FacebookUserCollection( );
-      this.xboxUserCollection = new BroLarm.Collection.XboxUserCollection( );
-      this.friendCollection = new BroLarm.Collection.FriendCollection( );
+      this.broLarmUserCollection = new brolarm.collection.BroLarmUserCollection( );
+      this.facebookUserCollection = new brolarm.collection.FacebookUserCollection( );
+      this.xboxUserCollection = new brolarm.collection.XboxUserCollection( );
+      this.friendCollection = new brolarm.collection.FriendCollection( );
       
       // Link this Bro-Larm user with his friends collection, so that selected friends can be saved
       this.friendCollection.setXboxUser( this.xboxUser );
@@ -97,17 +97,17 @@ $(function(){
       
     },
     
-    pollFirebaseReady: function( ) {
+    pollFirebaseReady: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.pollFirebaseReady( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.pollFirebaseReady( )' );
       
       this.checkFirebaseReadyId = setInterval( $.proxy( this.checkFirebaseReady, this ), 1000 );
       
     },
     
-    checkFirebaseReady: function( ) {
+    checkFirebaseReady: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.checkFirebaseReady( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.checkFirebaseReady( )' );
       
       if ( this.broLarmUserCollection.length > 0 ) {
         clearInterval( this.checkFirebaseReadyId );
@@ -118,7 +118,7 @@ $(function(){
 
     setFacebookUser: function( user ) {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.setFacebookUser( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.setFacebookUser( )' );
 
       // Check if this Facebook user has a Bro-Larm account
 
@@ -154,9 +154,9 @@ $(function(){
 
     },
 
-    resetUser: function( ) {
+    resetUser: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.resetUser( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.resetUser( )' );
 
       this.createDefaultUser( );
       
@@ -164,9 +164,9 @@ $(function(){
 
     },
 
-    authorizeUser: function( ) {
+    authorizeUser: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.authorizeUser( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.authorizeUser( )' );
 
       this.auth = new FirebaseSimpleLogin( this.firebase, $.proxy( this.onAuthorizeUser, this ) );
 
@@ -174,7 +174,7 @@ $(function(){
 
     login: function( e ) {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.login( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.login( )' );
 
       this.auth.login( 'facebook' );
 
@@ -182,7 +182,7 @@ $(function(){
 
     logout: function( e ) {
 
-      console.log( 'BroLarm.Model.BroLarmUserManager.logout( )' );
+      console.log( 'brolarm.model.BroLarmUserManager.logout( )' );
 
       this.auth.logout( );
 

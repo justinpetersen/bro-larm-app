@@ -1,6 +1,6 @@
 $(function(){
 
-  BroLarm.View.NavView = Backbone.View.extend({
+  brolarm.view.NavView = Backbone.View.extend({
 
     el: $( '#nav-container' ),
 
@@ -11,17 +11,17 @@ $(function(){
       'click #fb-logout-button': 'onLogoutClick'
     },
 
-    onLoginClick: function( ) {
+    onLoginClick: function() {
 
-      console.log( 'BroLarm.View.NavView.onLoginClick( )' );
+      console.log( 'brolarm.view.NavView.onLoginClick( )' );
 
       this.trigger( 'onLogin' );
 
     },
 
-    onLogoutClick: function( ) {
+    onLogoutClick: function() {
 
-      console.log( 'BroLarm.View.NavView.onLogoutClick( )' );
+      console.log( 'brolarm.view.NavView.onLogoutClick( )' );
 
       this.trigger( 'onLogout' );
 
@@ -29,7 +29,7 @@ $(function(){
 
     initialize: function( options ) {
 
-      console.log( 'BroLarm.View.NavView.initialize( )' );
+      console.log( 'brolarm.view.NavView.initialize( )' );
 
       // If the model is being updated, then clean up and replace the old model with the new model
       if ( options.model ) {
@@ -43,9 +43,9 @@ $(function(){
 
     },
 
-    render: function( ) {
+    render: function() {
 
-      console.log( 'BroLarm.View.NavView.render( )' );
+      console.log( 'brolarm.view.NavView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 

@@ -1,22 +1,22 @@
 $(function(){
 
-  BroLarm.View.HomeView = Backbone.View.extend({
+  brolarm.view.HomeView = Backbone.View.extend({
     
     el: $('#home-container'),
     
     template: _.template( $( '#home-template' ).html( ) ),
 
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.View.HomeView.initialize( )' );
+      console.log( 'brolarm.view.HomeView.initialize( )' );
       
       this.render( );
 
     },
     
-    render: function( ) {
+    render: function() {
       
-      console.log( 'BroLarm.View.HomeView.render( )' );
+      console.log( 'brolarm.view.HomeView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 

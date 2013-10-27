@@ -1,9 +1,9 @@
 $(function(){
 
-  BroLarm.Collection.BroLarmUserCollection =
+  brolarm.collection.BroLarmUserCollection =
       Backbone.Firebase.Collection.extend({
 
-    model: BroLarm.Model.BroLarmUserModel,
+    model: brolarm.model.BroLarmUserModel,
 
     firebase: new Firebase(
         'https://cod-bro-larm.firebaseio.com/bro-larm-users'),

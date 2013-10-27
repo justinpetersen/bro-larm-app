@@ -1,6 +1,6 @@
 $(function(){
 
-  BroLarm.View.FriendItemView = Backbone.View.extend({
+  brolarm.view.FriendItemView = Backbone.View.extend({
 
     template: _.template( $( '#friend-item-template' ).html( ) ),
 
@@ -12,25 +12,25 @@ $(function(){
       "click .friend-select": "onFriendSelect",
     },
     
-    onFriendSelect: function( ) {
+    onFriendSelect: function() {
 
-      console.log( 'BroLarm.View.FriendItemView.onFriendSelect( )' );
+      console.log( 'brolarm.view.FriendItemView.onFriendSelect( )' );
       
       this.toggleFriendSelected( );
       
     },
 
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.View.FriendItemView.initialize( )' );
+      console.log( 'brolarm.view.FriendItemView.initialize( )' );
 
       this.listenTo( this.model, 'change', this.render );
 
     },
 
-    render: function( ) {
+    render: function() {
 
-      console.log( 'BroLarm.View.FriendItemView.render( )' );
+      console.log( 'brolarm.view.FriendItemView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
       
@@ -43,7 +43,7 @@ $(function(){
 
     },
     
-    toggleFriendSelected: function( ) {
+    toggleFriendSelected: function() {
       
       this.model.set( 'selected', !this.model.get( 'selected') );
       

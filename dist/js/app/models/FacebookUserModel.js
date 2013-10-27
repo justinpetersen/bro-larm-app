@@ -1,13 +1,13 @@
 $(function(){
   "use strict";
 
-  BroLarm.Model.FacebookUserModel = Backbone.Model.extend({
+  brolarm.model.FacebookUserModel = Backbone.Model.extend({
 
     idAttribute: 'id',
 
-    defaults: function( ) {
+    defaults: function() {
 
-      console.log( 'BroLarm.Model.FacebookUserModel.defaults( )' );
+      console.log( 'brolarm.model.FacebookUserModel.defaults( )' );
 
       return {
         id: '',
@@ -16,9 +16,9 @@ $(function(){
 
     },
 
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.Model.FacebookUserModel.initialize( )' );
+      console.log( 'brolarm.model.FacebookUserModel.initialize( )' );
 
     }
 

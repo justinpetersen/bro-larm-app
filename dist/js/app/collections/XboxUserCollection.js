@@ -1,8 +1,8 @@
 $(function(){
 
-  BroLarm.Collection.XboxUserCollection = Backbone.Firebase.Collection.extend({
+  brolarm.collection.XboxUserCollection = Backbone.Firebase.Collection.extend({
 
-    model: BroLarm.Model.XboxUserModel,
+    model: brolarm.model.XboxUserModel,
 
     firebase: new Firebase('https://cod-bro-larm.firebaseio.com/xbox-users'),
 

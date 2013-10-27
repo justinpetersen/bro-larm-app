@@ -7,7 +7,7 @@ $(function(){
    * @constructor
    * @extends Backbone.View
    */
-  BroLarm.View.Controller = Backbone.View.extend({
+  brolarm.view.Controller = Backbone.View.extend({
     
     // PRIVATE PROPERTIES
     
@@ -79,7 +79,9 @@ $(function(){
     // PUBLIC METHODS
 
     /**
-     * Shows or hides UI views depending on the current application state.
+     * Shows or hides UI views depending on the current application state and
+     * returns this view.
+     * @return {brolarm.view.Controller} This view.
      */
     render: function() {
       switch ( this.currentPage ) {
@@ -133,7 +135,7 @@ $(function(){
      * events.
      */
     initUserManager: function() {
-      this.models.userManager = new BroLarm.Model.BroLarmUserManager();
+      this.models.userManager = new brolarm.model.BroLarmUserManager();
       this.listenTo(
           this.models.userManager,
           'onFacebookLogin',
@@ -155,7 +157,7 @@ $(function(){
      * Initializes the home page view.
      */
     createHome: function() {
-      this.views.home = new BroLarm.View.HomeView({
+      this.views.home = new brolarm.view.HomeView({
         model: this.models.userManager.facebookUser,
         router: this.router
       });
@@ -165,7 +167,7 @@ $(function(){
      * Initializes the top navigation view.
      */
     createNav: function() {
-      this.views.nav = new BroLarm.View.NavView({
+      this.views.nav = new brolarm.view.NavView({
         model: this.models.userManager.facebookUser,
         router: this.router
       });
@@ -178,7 +180,7 @@ $(function(){
      * Initializes the Xbox login form.
      */
     createXboxLogin: function() {
-      this.views.xboxLogin = new BroLarm.View.XboxLoginView({
+      this.views.xboxLogin = new brolarm.view.XboxLoginView({
         model: this.models.userManager.xboxUser,
         router: this.router
       });
@@ -188,7 +190,7 @@ $(function(){
      * Initializes the Xbox friends list.
      */
     createFriends: function() {
-      this.views.friends = new BroLarm.View.FriendsView({
+      this.views.friends = new brolarm.view.FriendsView({
         model: this.models.userManager.xboxUser,
         collection: this.models.userManager.friendCollection,
         router: this.router

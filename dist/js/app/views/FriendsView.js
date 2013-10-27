@@ -1,6 +1,6 @@
 $(function(){
 
-  BroLarm.View.FriendsView = Backbone.View.extend({
+  brolarm.view.FriendsView = Backbone.View.extend({
 
     el: $( '#friends-container' ),
 
@@ -10,7 +10,7 @@ $(function(){
     
     onFriendAdded: function( model ) {
 
-      console.log( 'BroLarm.View.FriendsView.onFriendAdded( )' );
+      console.log( 'brolarm.view.FriendsView.onFriendAdded( )' );
       
       this.renderFriend( model );
       
@@ -18,7 +18,7 @@ $(function(){
 
     onFriendsReset: function( eventName ) {
 
-      console.log( 'BroLarm.View.FriendsView.onFriendsReset( )' );
+      console.log( 'brolarm.view.FriendsView.onFriendsReset( )' );
 
       this.clearFriends( );
 
@@ -26,7 +26,7 @@ $(function(){
 
     initialize: function( options ) {
 
-      console.log( 'BroLarm.View.FriendsView.initialize( )' );
+      console.log( 'brolarm.view.FriendsView.initialize( )' );
       
       this.listenTo( this.collection, 'add', $.proxy( this.onFriendAdded, this ) );
       
@@ -38,9 +38,9 @@ $(function(){
 
     },
 
-    render: function( ) {
+    render: function() {
 
-      console.log( 'BroLarm.View.FriendsView.render( )' );
+      console.log( 'brolarm.view.FriendsView.render( )' );
 
       this.$el.html( this.template( this.model.toJSON( ) ) );
 
@@ -50,14 +50,14 @@ $(function(){
     
     renderFriend: function( model ) {
 
-      console.log( 'BroLarm.View.FriendsView.renderFriend( )' );
+      console.log( 'brolarm.view.FriendsView.renderFriend( )' );
       
-      var view = new BroLarm.View.FriendItemView( { model: model } );
+      var view = new brolarm.view.FriendItemView( { model: model } );
       $( '#friend-list' ).append( view.render().el );
 
     },
     
-    clearFriends: function( ) {
+    clearFriends: function() {
       
       $( '#friend-list' ).empty( );
       

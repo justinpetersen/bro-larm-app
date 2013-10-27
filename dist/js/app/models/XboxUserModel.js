@@ -1,27 +1,27 @@
 $(function(){
   "use strict";
 
-  BroLarm.Model.XboxUserModel = Backbone.Model.extend({
+  brolarm.model.XboxUserModel = Backbone.Model.extend({
 
     urlRoot: 'http://www.xboxleaders.com/api/2.0/profile.json',
 
     idAttribute: 'gamertag',
 
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.Model.XboxUserModel.initialize( )' );
+      console.log( 'brolarm.model.XboxUserModel.initialize( )' );
 
     },
 
-    url: function( ) {
+    url: function() {
 
       return this.urlRoot + '?gamertag=' + this.get( 'gamertag' );
 
     },
 
-    defaults: function( ) {
+    defaults: function() {
 
-      console.log( 'BroLarm.Model.XboxUserModel.parse( )' );
+      console.log( 'brolarm.model.XboxUserModel.parse( )' );
 
       return {
         gamertag: '',
@@ -34,7 +34,7 @@ $(function(){
 
     parse: function( response, options ) {
 
-      console.log( 'BroLarm.Model.XboxUserModel.parse( )' );
+      console.log( 'brolarm.model.XboxUserModel.parse( )' );
 
       return {
         gamertag: response.data.gamertag,

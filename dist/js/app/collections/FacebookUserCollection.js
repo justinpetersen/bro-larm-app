@@ -1,9 +1,9 @@
 $(function(){
 
-  BroLarm.Collection.FacebookUserCollection =
+  brolarm.collection.FacebookUserCollection =
       Backbone.Firebase.Collection.extend({
 
-  	model: BroLarm.Model.FacebookUserModel,
+  	model: brolarm.model.FacebookUserModel,
 
   	firebase: new Firebase(
   	    'https://cod-bro-larm.firebaseio.com/facebook-users'),

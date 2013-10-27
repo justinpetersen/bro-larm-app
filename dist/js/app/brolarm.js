@@ -1,6 +1,6 @@
-// BroLarm class paths.
-var BroLarm = {
-  Model: {},
-  View: {},
-  Collection: {}
+// BroLarm package class paths.
+var brolarm = {
+  model: {},
+  view: {},
+  collection: {}
 };

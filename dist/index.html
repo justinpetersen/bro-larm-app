@@ -135,23 +135,9 @@
 
     <!-- Start the app -->
     <script type='text/javascript'>
-
       $(function(){
-
-        var app = {
-          views: { },
-          collections: { },
-          models: { },
-          firebase: null,
-          router: null
-        };
-
-        app.views.controller = new BroLarm.View.Controller();
-        app.router = new BroLarm.Router( app.views.controller );
-        Backbone.history.start( { pushState: true } );
-
+        var app = new brolarm.view.Controller();
       });
-
     </script>
 
   </body>

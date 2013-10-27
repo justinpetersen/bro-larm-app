@@ -1,7 +1,7 @@
 $(function(){
   "use strict";
 
-  BroLarm.Model.BroLarmUserModel = Backbone.Model.extend({
+  brolarm.model.BroLarmUserModel = Backbone.Model.extend({
 
     idAttribute: 'id',
     
@@ -9,23 +9,23 @@ $(function(){
     
     onFriendSelectToggle: function( model ) {
 
-      console.log( 'BroLarm.Model.BroLarmUserModel.onFriendSelectToggle( )' );
+      console.log( 'brolarm.model.BroLarmUserModel.onFriendSelectToggle( )' );
       
       this.setFriendSelected( model );
       
     },
 
-    onFriendsSync: function( ) {
+    onFriendsSync: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserModel.onFriendsSync( )' );
+      console.log( 'brolarm.model.BroLarmUserModel.onFriendsSync( )' );
 
       this.updateFriendsSelected( );
 
     },
 
-    defaults: function( ) {
+    defaults: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserModel.defaults( )' );
+      console.log( 'brolarm.model.BroLarmUserModel.defaults( )' );
 
       return {
         id: '',
@@ -35,15 +35,15 @@ $(function(){
 
     },
 
-    initialize: function( ) {
+    initialize: function() {
 
-      console.log( 'BroLarm.Model.BroLarmUserModel.initialize( )' );
+      console.log( 'brolarm.model.BroLarmUserModel.initialize( )' );
 
     },
 
     setFriends: function( list ) {
 
-      console.log( 'BroLarm.Model.FriendCollection.setFriends( )' );
+      console.log( 'brolarm.model.FriendCollection.setFriends( )' );
 
       if ( this.friends ) {
         this.stopListening( this.friends );
@@ -56,9 +56,9 @@ $(function(){
 
     },
     
-    updateFriendsSelected: function( ) {
+    updateFriendsSelected: function() {
 
-      console.log( 'BroLarm.Model.FriendCollection.updateFriendsSelected( )' );
+      console.log( 'brolarm.model.FriendCollection.updateFriendsSelected( )' );
       
       var selected = this.get( 'selectedFriends' );
       
@@ -77,7 +77,7 @@ $(function(){
     
     setFriendSelected: function( model ) {
 
-      console.log( 'BroLarm.Model.BroLarmUserModel.setFriendSelected( )' );
+      console.log( 'brolarm.model.BroLarmUserModel.setFriendSelected( )' );
       
       var oldSelected = this.get( 'selectedFriends' );
       var newSelected = [ ];
