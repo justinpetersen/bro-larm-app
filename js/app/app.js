@@ -8,10 +8,10 @@ $(function(){
    * @extends Backbone.View
    */
   brolarm.view.Controller = Backbone.View.extend({
-    
-  	//-------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------
     // PRIVATE PROPERTIES
-  	//-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 
     /* The user manager maintains the state of the Facebook user and the linked
      * Xbox LIVE user. All user state events come through the user manager.
@@ -19,7 +19,7 @@ $(function(){
     models: {
       userManager: null
     },
-    
+
     /* All child views are created at initialization, then just shown or hidden
      * as the application changes state.
      */
@@ -37,18 +37,18 @@ $(function(){
      * the UI is contained in the child views, this is never used.
      */
     el: $ ('#app'),
-    
-  	//-------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------
     // PRIVATE EVENT HANDLERS
-  	//-------------------------------------------------------------------------
-    
+    //-------------------------------------------------------------------------
+
     /**
      * Event handler for "Login" button clicks.
      */
     onLogin: function() {
       this.models.userManager.login();
     },
-    
+
     /**
      * Event handler for "Logout" button clicks.
      */
@@ -69,7 +69,7 @@ $(function(){
     onFacebookLogout: function() {
       this.setPage('home');
     },
-    
+
 
     /**
      * Event handler for when the user is reset. This would be fired when the
@@ -80,9 +80,9 @@ $(function(){
       this.resetViews();
     },
 
-  	//-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     // PUBLIC METHODS
-  	//-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 
     /**
      * Shows or hides UI views depending on the current application state and
@@ -105,7 +105,7 @@ $(function(){
 
       return this;
     },
-    
+
     /**
      * Sets the state of the application and renders the view.
      * @param {string} page Mandatory value for which state to render. There
@@ -116,9 +116,9 @@ $(function(){
       this.render();
     },
 
-  	//-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     // private METHODS
-  	//-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 
      /**
       * Initializes models and views and renders the initial state of the
@@ -127,13 +127,13 @@ $(function(){
     initialize: function() {
       // Create models
       this.initUserManager();
-      
+
       // Create views
       this.createNav();
       this.createHome();
       this.createXboxLogin();
       this.createFriends();
-      
+
       // Render the application
       this.render();
     },
@@ -160,7 +160,7 @@ $(function(){
           $.proxy(this.onResetUser, this)
      );
     },
-    
+
     /**
      * Initializes the home page view.
      */
@@ -170,7 +170,7 @@ $(function(){
         router: this.router
       });
     },
-    
+
     /**
      * Initializes the top navigation view.
      */
@@ -183,7 +183,7 @@ $(function(){
       this.listenTo(this.views.nav, 'onLogin', $.proxy(this.onLogin, this));
       this.listenTo(this.views.nav, 'onLogout', $.proxy(this.onLogout, this));
     },
-    
+
     /**
      * Initializes the Xbox login form.
      */
@@ -193,7 +193,7 @@ $(function(){
         router: this.router
       });
     },
-    
+
     /**
      * Initializes the Xbox friends list.
      */
@@ -204,7 +204,7 @@ $(function(){
         router: this.router
       });
     },
-    
+
     /**
      * Re-initializes the top navigation and Xbox login form when the user
      * is reset to the default anonymous user. This is necessary to update
