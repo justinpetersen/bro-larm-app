@@ -9,8 +9,10 @@ $(function(){
    */
   brolarm.view.Controller = Backbone.View.extend({
     
+  	//-------------------------------------------------------------------------
     // PRIVATE PROPERTIES
-    
+  	//-------------------------------------------------------------------------
+
     /* The user manager maintains the state of the Facebook user and the linked
      * Xbox LIVE user. All user state events come through the user manager.
      */
@@ -36,7 +38,9 @@ $(function(){
      */
     el: $ ('#app'),
     
+  	//-------------------------------------------------------------------------
     // PRIVATE EVENT HANDLERS
+  	//-------------------------------------------------------------------------
     
     /**
      * Event handler for "Login" button clicks.
@@ -76,7 +80,9 @@ $(function(){
       this.resetViews();
     },
 
+  	//-------------------------------------------------------------------------
     // PUBLIC METHODS
+  	//-------------------------------------------------------------------------
 
     /**
      * Shows or hides UI views depending on the current application state and
@@ -109,8 +115,10 @@ $(function(){
       this.currentPage = page;
       this.render();
     },
-    
-    // PRIVATE METHODS
+
+  	//-------------------------------------------------------------------------
+    // private METHODS
+  	//-------------------------------------------------------------------------
 
      /**
       * Initializes models and views and renders the initial state of the
