@@ -12,7 +12,17 @@ function BroLarmApplication() {
 	//-----------------------------------------------------------------------------------------------
 	
 	// directories to route
-	this.ROUTE_DIRECTORIES = ['css', 'fonts', 'images', 'js', 'js/app', 'js/app/collections', 'js/app/models', 'js/app/views', 'js/vendor'];
+	this.ROUTE_DIRECTORIES = [
+    'css',
+    'fonts',
+    'images',
+    'js',
+    'js/app',
+    'js/app/collections',
+    'js/app/models',
+    'js/app/views',
+    'js/vendor'
+	];
 	
 	// file name of index page
 	this.INDEX_FILE_NAME = 'index.html';
