@@ -51,7 +51,7 @@ function BroLarmApplication() {
     // set jQuery scope
     $ = require('jquery');
 
-    this._riley = require('./js/app/riley');
+    this._riley = require('./js/api/riley');
 
     this.initServer();
   };

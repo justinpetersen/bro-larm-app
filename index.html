@@ -83,7 +83,8 @@
       <div class='friend-item'>
         <div class='container'>
           <div class='left friend-attribute'>
-            <input type='checkbox' class='regular-checkbox big-checkbox friend-select' id='checkbox-id' <%= selected ? 'checked="checked"' : '' %> /><label id='checkbox-label-id' for="checkbox-id"></label>
+            <input type='checkbox' class='regular-checkbox big-checkbox friend-select' id='<%= gamertag %>' <%= selected ? 'checked="checked"' : '' %> /><label for="<%= gamertag %>"></label>
+            <!--input type='checkbox' class='friend-select' id='checkbox-id' <%= selected ? 'checked="checked"' : '' %> /-->
           </div>
           <div class='left friend-attribute'>
             <img src = '<%= avatar %>' class='img-rounded' />
