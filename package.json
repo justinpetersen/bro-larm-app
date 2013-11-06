@@ -2,7 +2,9 @@
   "name": "bro-larm-app",
   "version": "0.0.1",
   "dependencies": {
+    "backbone": "1.1.0",
     "express": "3.1.x",
+    "firebase": "0.6.7",
     "jquery": "1.8.3"
   },
   "engines": {

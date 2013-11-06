@@ -4,9 +4,9 @@ $(function(){
   brolarm.model.BroLarmUserModel = Backbone.Model.extend({
 
     idAttribute: 'id',
-    
+
     friends: null,
-    
+
     onFriendSelectToggle: function(model) {
       this.setFriendSelected(model);
     },
@@ -38,10 +38,10 @@ $(function(){
           'sync',
           $.proxy(this.onFriendsSync, this)
      );
-      
+
       this.updateFriendsSelected();
     },
-    
+
     updateFriendsSelected: function() {
       var selected = this.get('selectedFriends');
       var friend;
@@ -54,11 +54,11 @@ $(function(){
         }
       }
     },
-    
+
     setFriendSelected: function(model) {
       var oldSelected = this.get('selectedFriends');
       var newSelected = [];
-      
+
       // If there are existing friends, then copy all the existing friends to the new list
       if (oldSelected) {
         for (var i = 0; i < oldSelected.length; i++) {
@@ -67,12 +67,12 @@ $(function(){
           }
         }
       }
-      
+
       // If the toggled friend was selected, also copy him to the new list
       if (model.get('selected')) {
         newSelected.push(model.get('gamertag'));
       }
-      
+
       // Save the new friend list
       this.set('selectedFriends', newSelected);
     }

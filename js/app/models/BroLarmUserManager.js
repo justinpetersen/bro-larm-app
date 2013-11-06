@@ -12,10 +12,9 @@ $(function(){
     facebookUserCollection: null,
 
     xboxUser: null,
-    xboxUserCollection: null,
 
     friendCollection: null,
-    
+
     checkFirebaseReadyId: -1,
 
     onAuthorizeUser: function(error, user) {
@@ -29,19 +28,19 @@ $(function(){
         this.resetUser();
       }
     },
-    
+
     onXboxUserChange: function() {
       if (this.xboxUser.hasChanged('gamertag')) {
         this.broLarmUser.set('gamertag', this.xboxUser.get('gamertag'));
       }
     },
-    
+
     initialize: function() {
       this.firebase =  new Firebase('https://cod-bro-larm.firebaseio.com');
 
       this.createDefaultUser();
       this.createUserCollections();
-      
+
       this.pollFirebaseReady();
     },
 
@@ -49,9 +48,9 @@ $(function(){
       this.broLarmUser = new brolarm.model.BroLarmUserModel();
       this.facebookUser = new brolarm.model.FacebookUserModel();
       this.xboxUser = new brolarm.model.XboxUserModel();
-      
+
       this.listenTo(this.xboxUser, 'change', $.proxy(this.onXboxUserChange, this));
-      
+
       // TODO: Figure out if this is necessary
       if (this.friendCollection) {
         this.friendCollection.setXboxUser(this.xboxUser);
@@ -64,19 +63,18 @@ $(function(){
     createUserCollections: function() {
       this.broLarmUserCollection = new brolarm.collection.BroLarmUserCollection();
       this.facebookUserCollection = new brolarm.collection.FacebookUserCollection();
-      this.xboxUserCollection = new brolarm.collection.XboxUserCollection();
       this.friendCollection = new brolarm.collection.FriendCollection();
-      
+
       // Link this Bro-Larm user with his friends collection, so that selected friends can be saved
       this.friendCollection.setXboxUser(this.xboxUser);
       this.broLarmUser.setFriends(this.friendCollection);
-      
+
     },
-    
+
     pollFirebaseReady: function() {
       this.checkFirebaseReadyId = setInterval($.proxy(this.checkFirebaseReady, this), 1000);
     },
-    
+
     checkFirebaseReady: function() {
       if (this.broLarmUserCollection.length > 0) {
         clearInterval(this.checkFirebaseReadyId);
@@ -93,7 +91,7 @@ $(function(){
         this.broLarmUser = lookedUpUser;
         this.broLarmUser.setFriends(this.friendCollection);
         this.facebookUser = this.facebookUserCollection.get(this.broLarmUser.id);
-        
+
         // If this existing user has entered an Xbox gamertag, then look up
         // that Xbox user.
         if (this.broLarmUser.get('gamertag') != '') {
@@ -111,13 +109,13 @@ $(function(){
         this.broLarmUserCollection.add(this.broLarmUser);
         this.facebookUserCollection.add(this.facebookUser);
       }
-      
+
       this.trigger('onFacebookLogin');
     },
 
     resetUser: function() {
       this.createDefaultUser();
-      
+
       this.trigger('onFacebookLogout');
     },
 
