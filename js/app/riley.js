@@ -1,24 +1,27 @@
+var ONLINE_STATUS = 'Online playing Call of Duty';
+
 exports.getFriendsOnline = function(req, res) {
   var Firebase = require('firebase');
   var broLarmUser = new Firebase('https://cod-bro-larm.firebaseio.com/bro-larm-users/' + req.params.id);
 
-  broLarmUser.on('value', function(obj) {
-      console.log('gamertag: ' + obj.val().gamertag);
-      console.log('selectedFriends: ' + obj.val().selectedFriends);
+  broLarmUser.on('value', function(data) {
+      var gamertag = data.val().gamertag;
+      var selectedFriends = data.val().selectedFriends;
+      var selectedFriendsLookup = {};
+      for (var i=0; i<selectedFriends.length; i++) {
+        selectedFriendsLookup[selectedFriends[i]] = true;
+      }
+
+      $ = require('jquery');
+      $.getJSON('https://www.xboxleaders.com/api/2.0/friends.json?gamertag=Major%20Nelson', function(data) {
+        for (var i=0; i<data.data.friends.length; i++) {
+          if (data.data.friends[i].status == ONLINE_STATUS) {
+            res.json(200, {'status': 'online'});
+            return;
+          }
+        }
+
+        res.json(200, {'status': 'offline'});
+      });
   });
-
-  /*$ = require('jquery');
-  $.getJSON('ajax/test.json', function( data ) {
-      var items = [];
-      $.each( data, function( key, val ) {
-        items.push( "<li id='" + key + "'>" + val + "</li>" );
-  });
-
-  $( "<ul/>", {
-  "class": "my-new-list",
-  html: items.join( "" )
-  }).appendTo( "body" );
-  });*/
-
-  res.json(500, {'status': req.params.id});
 };
