@@ -25,7 +25,7 @@
 
     <!-- Templates -->
     <script type='text/template' id='nav-template'>
-      <div class='navbar navbar-inverse navbar-fixed-top'>
+      <div class='navbar navbar-inverse navbar-fixed-top' id='global-nav'>
         <div class='container'>
           <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -47,8 +47,13 @@
     </script>
 
     <script type='text/template' id='home-template'>
-      <div class='starter-template'>
-        <img src='images/corgi-riley.jpg' />
+      <div class='container'>
+        <div id='logo-splash'>
+          <img src='images/brolarm-logo.png' />
+        </div>
+        <div id='fb-login'>
+          <button id='fb-login-button' class='btn btn-primary'>Login with Facebook</button>
+        </div>
       </div>
     </script>
 
@@ -67,7 +72,7 @@
         <div class='container'>
           <img src='<%= avatar %>' class='img-rounded pull-left friend-attribute' width='48' height='48' />
           <h3 class='gamertag-heading'><%= gamertag %></h3>
-          <p class='ellipsis'><%= presence %></p>
+          <p class='gamer-presence ellipsis'><%= presence %></p>
           <button type='button' class='btn btn-primary btn-xs' id='btn-sign-out'>Change</button>
         </div>
       </div>
@@ -86,10 +91,10 @@
             <input type='checkbox' class='regular-checkbox big-checkbox friend-select' id='<%= gamertag %>' <%= selected ? 'checked="checked"' : '' %> /><label for="<%= gamertag %>"></label>
           </div>
           <div class='left friend-attribute'>
-            <img src = '<%= avatar %>' class='img-rounded' />
+            <img src = '<%= avatar %>' class='img-rounded' width='50' height='50' />
           </div>
-          <h3 class='gamertag-heading'><%= gamertag %></h3>
-          <p class='lead'><%= presence %></p>
+          <h4 class='gamertag-heading'><%= gamertag %></h4>
+          <p class='gamer-presence'><%= presence %></p>
         </div>
       </div>
     </script>

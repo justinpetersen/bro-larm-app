@@ -1,13 +1,18 @@
 body {
+  background-color: #000;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
   padding-top: 67px;
 }
 
 .navbar-brand {
-  background-image: url('../images/cod-logo.png');
-  background-size: 182px 67px;
+  background-image: url('../images/brolarm-logo.png');
+  background-size: 191px 42px;
   background-repeat: no-repeat;
-  width: 171px;
-  height: 67px;
+  width: 191px;
+  height: 42px;
 }
 
 .gamer-profile {
@@ -28,6 +33,9 @@ body {
 
 .list-group-item {
   padding: 10px 0px 10px 0px;
+  background: none;
+  border: none;
+  color: #fff;
 }
 
 .friend-item {
@@ -65,22 +73,37 @@ body {
   margin-bottom: 0px;
 }
 
-#fb-login-button {
+.gamer-presence {
+  color: #808080;
+}
+
+#nav-container {
   display: none;
 }
 
+#logo-splash {
+  width: 342px;
+  padding-top: 60px;
+  margin: 0 auto;
+}
+
+#fb-login {
+  width: 158px;
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+#fb-login-button {
+  /*display: none;*/
+}
+
 #fb-logout-button {
-  display: none;
+  /*display: none;*/
   margin-right: 10px;
 }
 
 #fb-profile-pic {
   display: none;
-}
-
-#home-container {
-  width: 970px;
-  margin: 0 auto;
 }
 
 #xbox-profile {
@@ -103,11 +126,11 @@ body {
 
 /* Spinner */
 
-.waiting-circles{ padding: 0; display: inline-block; 
+.waiting-circles{ padding: 0; display: inline-block;
     position: relative; width: 60px; height: 60px;}
-.waiting-circles-element{ margin: 0 2px 0 0; background-color: #e4e4e4; 
+.waiting-circles-element{ margin: 0 2px 0 0; background-color: #e4e4e4;
     border: solid 1px #f4f4f4;
-    width: 10px; height: 10px; display: inline-block; 
+    width: 10px; height: 10px; display: inline-block;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
 .waiting-circles-play-0{ background-color: #9EC45F; }
 .waiting-circles-play-1{ background-color: #aEd46F; }

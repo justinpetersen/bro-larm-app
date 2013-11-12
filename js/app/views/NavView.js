@@ -39,14 +39,26 @@ $(function(){
         $('#fb-login-button').show();
         $('#fb-logout-button').hide();
         $('#fb-profile-pic').hide();
+
+        this.hide();
       } else {
         $('#fb-login-button').hide();
         $('#fb-logout-button').show();
         $('#fb-profile-pic').show();
+
+        this.show();
       }
 
       return this;
-    }
+    },
+
+    show: function() {
+      this.$el.show();
+    },
+
+    hide: function() {
+      this.$el.hide();
+    },
 
   });
 

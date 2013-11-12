@@ -169,6 +169,8 @@ $(function(){
         model: this.models.userManager.facebookUser,
         router: this.router
       });
+
+      this.listenTo(this.views.home, 'onLogin', $.proxy(this.onLogin, this));
     },
 
     /**
