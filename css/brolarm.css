@@ -29,6 +29,8 @@ body {
 
 .list-container {
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-top: 10px;
 }
 
 .list-group-item {
@@ -126,10 +128,6 @@ fieldset[disabled] .btn.active {
   display: none;
 }
 
-#fb-profile-pic {
-  /*display: none;*/
-}
-
 #fb-login-form {
   width: 342px;
   padding-top: 60px;
@@ -137,10 +135,6 @@ fieldset[disabled] .btn.active {
 }
 
 #fb-login-button {
-  margin-top: 20px;
-}
-
-#xbox-container {
   margin-top: 20px;
 }
 
