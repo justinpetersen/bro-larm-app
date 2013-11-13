@@ -3,6 +3,8 @@ $(function(){
 
   brolarm.view.XboxLoginView = Backbone.View.extend({
 
+    SHOW_GAMER_PROFILE: false,
+
     el: $('#xbox-login-container'),
 
     template: _.template($('#xbox-login-template').html()),
@@ -60,18 +62,18 @@ $(function(){
       this.laddaSubmit = Ladda.create($('#gamertag-submit')[ 0 ]);
       this.stopLoader();
       this.initSpinner();
-      
+
       this.checkShowGamerProfile();
 
       return this;
     },
-    
+
     initSpinner: function() {
-      $('#xbox-spinner').waiting({ 
-          className: 'waiting-circles', 
-          elements: 8, 
-          radius: 20, 
-          auto: true 
+      $('#xbox-spinner').waiting({
+          className: 'waiting-circles',
+          elements: 8,
+          radius: 20,
+          auto: true
       });
     },
 
@@ -81,16 +83,22 @@ $(function(){
         $('#xbox-login-form').hide();
         $('#xbox-profile').fadeIn();
         $('#xbox-spinner-container').hide();
+
+        if (!this.SHOW_GAMER_PROFILE) {
+          this.$el.hide();
+        }
       // Logging in to Xbox
       } else if (this.model.get('gamertag') != '') {
         $('#xbox-profile').hide();
         $('#xbox-login-form').hide();
         $('#xbox-spinner-container').show();
+        this.$el.show();
       // Need to log in to Xbox
       } else {
         $('#xbox-profile').hide();
         $('#xbox-login-form').fadeIn();
         $('#xbox-spinner-container').hide();
+        this.$el.show();
       }
     },
 

@@ -10,13 +10,14 @@ $(function(){
     urlRoot: 'http://www.xboxleaders.com/api/2.0/friends.json',
 
     onXboxUserChange: function() {
-      // If the user's gamertag changes, then fetch their Xbox friends.
-      if (this.xboxUser.hasChanged('gamertag')) {
+      // KLUDGE: Only load friends once the avatar is populated. This is to
+      // make sure that the gamer profile loads before loading friends.
+      if (this.xboxUser.hasChanged('avatar')) {
         this.reset();
         this.fetch();
       }
     },
-    
+
     setXboxUser: function(user) {
       if (this.xboxUser) {
         this.stopListening(this.xboxUser);

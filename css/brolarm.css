@@ -128,6 +128,7 @@ fieldset[disabled] .btn.active {
 #xbox-container {
   padding-top: 100px;
   background-color: rgba(0, 0, 0, 0.4);
+  min-height: 554px;
 }
 
 #fb-login-form {
@@ -152,7 +153,10 @@ fieldset[disabled] .btn.active {
 
 #xbox-spinner-container {
   display: none;
-  margin-top: 10px;
+}
+
+#friends-spinner-container {
+  display: none;
 }
 
 /* Spinner */
