@@ -140,6 +140,10 @@ fieldset[disabled] .btn.active {
   margin-top: 20px;
 }
 
+#xbox-container {
+  margin-top: 20px;
+}
+
 #xbox-profile {
   display: none;
 }
