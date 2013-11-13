@@ -144,9 +144,6 @@ fieldset[disabled] .btn.active {
   display: none;
 }
 
-#friends-heading {
-  display: none;
-}
 .spinner-container {
   width: 50px;
   padding-top: 20px;

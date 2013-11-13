@@ -18,21 +18,33 @@ $(function(){
     checkFirebaseReadyId: -1,
 
     mutators: {
+      avatar: function() {
+        if (this.xboxUser && this.xboxUser.get('avatar') != '') {
+          return this.xboxUser.get('avatar');
+        } else if (this.facebookUser && this.facebookUser.get('id') != '') {
+          var avatarUrl = 'https://graph.facebook.com/';
+          avatarUrl += this.facebookUser.get('id');
+          avatarUrl += '/picture';
+          return avatarUrl
+        }
+        return this.defaults.avatar;
+      },
       gamertag: function() {
         if (this.xboxUser) {
           return this.xboxUser.get('gamertag');
         }
-        return '';
+        return this.defaults.gamertag;
       },
       id: function() {
         if (this.facebookUser) {
           return this.facebookUser.get('id');
         }
-        return '';
+        return this.defaults.id;
       }
     },
 
     defaults: {
+      avatar: 'https://graph.facebook.com/257756954235461/picture',
       gamertag: '',
       id: ''
     },
@@ -52,6 +64,7 @@ $(function(){
     onXboxUserChange: function() {
       if (this.xboxUser.hasChanged('gamertag')) {
         this.broLarmUser.set('gamertag', this.xboxUser.get('gamertag'));
+        this.trigger('change');
       }
     },
 

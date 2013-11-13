@@ -20,14 +20,7 @@ $(function(){
     },
 
     initialize: function(options) {
-      // If the model is being updated, then clean up and replace the old model with the new model
-      // if (options.model) {
-      //   this.stopListening(this.model);
-      //   this.model = options.model;
-      // }
-
       this.listenTo(this.model, 'change', $.proxy(this.render, this));
-
       this.render();
     },
 
