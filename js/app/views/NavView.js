@@ -27,7 +27,7 @@ $(function(){
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       
-      if (this.model.get('gamertag') == '') {
+      if (this.model.get('gamertag') == '' || this.model.get('id') == '') {
         this.$el.hide();
       } else {
         this.$el.show();

@@ -59,7 +59,7 @@ $(function(){
     onXboxUserChange: function() {
       if (this.xboxUser.hasChanged('gamertag')) {
         this.broLarmUser.set('gamertag', this.xboxUser.get('gamertag'));
-      }  
+      }
       this.trigger('change');
     },
 
@@ -84,8 +84,9 @@ $(function(){
         this.friendCollection.setXboxUser(this.xboxUser);
       }
 
-      // TODO: Figure out if this is the right place for this
+      // TODO: Clean up extra events
       this.trigger('onResetUser');
+      this.trigger('change');
     },
 
     createUserCollections: function() {
