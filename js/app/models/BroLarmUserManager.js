@@ -21,11 +21,6 @@ $(function(){
       avatar: function() {
         if (this.xboxUser && this.xboxUser.get('avatar') != '') {
           return this.xboxUser.get('avatar');
-        } else if (this.facebookUser && this.facebookUser.get('id') != '') {
-          var avatarUrl = 'https://graph.facebook.com/';
-          avatarUrl += this.facebookUser.get('id');
-          avatarUrl += '/picture';
-          return avatarUrl
         }
         return this.defaults.avatar;
       },
@@ -64,8 +59,8 @@ $(function(){
     onXboxUserChange: function() {
       if (this.xboxUser.hasChanged('gamertag')) {
         this.broLarmUser.set('gamertag', this.xboxUser.get('gamertag'));
-        this.trigger('change');
-      }
+      }  
+      this.trigger('change');
     },
 
     initialize: function() {
