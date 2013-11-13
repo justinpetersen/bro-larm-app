@@ -2,6 +2,8 @@ $(function(){
 
   brolarm.view.NavView = Backbone.View.extend({
 
+    showing: false,
+
     el: $('#nav-container'),
 
     template: _.template($('#nav-template').html()),
@@ -28,20 +30,28 @@ $(function(){
       this.$el.html(this.template(this.model.toJSON()));
 
       if (this.model.get('avatar') == '' || this.model.get('id') == '') {
-        this.$el.hide();
+        this.hide();
       } else {
-        this.$el.show();
+        this.show();
       }
 
       return this;
     },
 
     show: function() {
-      this.$el.show();
+      $('#global-nav').animate({
+          top: 0
+      })
+
+      this.showing = true;
     },
 
     hide: function() {
-      this.$el.hide();
+      $('#global-nav').animate({
+          top: -80
+      })
+
+      this.showing = false;
     },
 
   });

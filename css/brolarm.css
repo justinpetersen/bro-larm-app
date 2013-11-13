@@ -121,8 +121,8 @@ fieldset[disabled] .btn.active {
   border: none;
 }
 
-#nav-container {
-  display: none;
+#global-nav {
+  top: -80px;
 }
 
 #xbox-container {
@@ -132,8 +132,8 @@ fieldset[disabled] .btn.active {
 }
 
 #fb-login-form {
+  padding-top: 100px;
   width: 342px;
-  padding-top: 60px;
   margin: 0 auto;
 }
 
@@ -161,15 +161,32 @@ fieldset[disabled] .btn.active {
 
 /* Spinner */
 
-.waiting-circles{ padding: 0; display: inline-block;
-    position: relative; width: 60px; height: 60px;}
-.waiting-circles-element{ margin: 0 2px 0 0; background-color: #e4e4e4;
-    border: solid 1px #f4f4f4;
-    width: 10px; height: 10px; display: inline-block;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
-.waiting-circles-play-0{ background-color: #9EC45F; }
-.waiting-circles-play-1{ background-color: #aEd46F; }
-.waiting-circles-play-2{ background-color: #bEe47F; }
+.waiting-circles{
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+.waiting-circles-element {
+  margin: 0 2px 0 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.waiting-circles-play-0{
+  background-color: #9EC45F;
+}
+.waiting-circles-play-1{
+  background-color: #aEd46F;
+}
+.waiting-circles-play-2{
+  background-color: #bEe47F;
+}
 
 /* Checkbox */
 
