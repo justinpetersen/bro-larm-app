@@ -217,12 +217,6 @@ $(function(){
      * these views' local references to the Facebook and Xbox user models.
      */
     resetViews: function() {
-      // If the nav exists, then initialize it with the new Facebook user
-      if (this.views.nav) {
-        // this.views.nav.initialize({model: this.models.userManager.facebookUser});
-        // this.views.nav.render();
-      }
-
       // If the Xbox login exists, then initialize it with the new Xbox user
       if (this.views.xboxLogin) {
         this.views.xboxLogin.initialize({model: this.models.userManager.xboxUser});

@@ -14,7 +14,10 @@ $(function(){
       // make sure that the gamer profile loads before loading friends.
       if (this.xboxUser.hasChanged('avatar')) {
         this.reset();
-        this.fetch();
+
+        if (this.xboxUser.get('gamertag') != '') {
+          this.fetch();
+        }
       }
     },
 

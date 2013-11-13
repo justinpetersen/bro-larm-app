@@ -44,6 +44,14 @@ $(function(){
       id: ''
     },
 
+    login: function(e) {
+      this.auth.login('facebook');
+    },
+
+    logout: function(e) {
+      this.auth.logout();
+    },
+
     onAuthorizeUser: function(error, user) {
       if (user) {
         this.setFacebookUser(user);
@@ -81,6 +89,7 @@ $(function(){
 
       // TODO: Figure out if this is necessary
       if (this.friendCollection) {
+        this.friendCollection.reset();
         this.friendCollection.setXboxUser(this.xboxUser);
       }
 
@@ -152,14 +161,6 @@ $(function(){
           this.firebase,
           $.proxy(this.onAuthorizeUser, this)
      );
-    },
-
-    login: function(e) {
-      this.auth.login('facebook');
-    },
-
-    logout: function(e) {
-      this.auth.logout();
     }
 
   });
