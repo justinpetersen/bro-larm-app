@@ -4,7 +4,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center top;
-  padding-top: 67px;
 }
 
 .navbar-brand {
@@ -29,8 +28,6 @@ body {
 
 .list-container {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  margin-top: 10px;
 }
 
 .list-group-item {
@@ -126,6 +123,11 @@ fieldset[disabled] .btn.active {
 
 #nav-container {
   display: none;
+}
+
+#xbox-container {
+  padding-top: 100px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 #fb-login-form {
