@@ -17,6 +17,26 @@ $(function(){
 
     checkFirebaseReadyId: -1,
 
+    mutators: {
+      gamertag: function() {
+        if (this.xboxUser) {
+          return this.xboxUser.get('gamertag');
+        }
+        return '';
+      },
+      id: function() {
+        if (this.facebookUser) {
+          return this.facebookUser.get('id');
+        }
+        return '';
+      }
+    },
+
+    defaults: {
+      gamertag: '',
+      id: ''
+    },
+
     onAuthorizeUser: function(error, user) {
       if (user) {
         this.setFacebookUser(user);

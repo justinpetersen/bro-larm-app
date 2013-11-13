@@ -42,6 +42,10 @@ $(function(){
     // PRIVATE EVENT HANDLERS
     //-------------------------------------------------------------------------
 
+    onChangeGamertag: function() {
+      this.views.xboxLogin.signOut();
+    },
+
     /**
      * Event handler for "Login" button clicks.
      */
@@ -178,11 +182,11 @@ $(function(){
      */
     createNav: function() {
       this.views.nav = new brolarm.view.NavView({
-        model: this.models.userManager.facebookUser,
+        model: this.models.userManager,
         router: this.router
       });
 
-      this.listenTo(this.views.nav, 'onLogin', $.proxy(this.onLogin, this));
+      this.listenTo(this.views.nav, 'onChangeGamertag', $.proxy(this.onChangeGamertag, this));
       this.listenTo(this.views.nav, 'onLogout', $.proxy(this.onLogout, this));
     },
 
@@ -215,7 +219,8 @@ $(function(){
     resetViews: function() {
       // If the nav exists, then initialize it with the new Facebook user
       if (this.views.nav) {
-        this.views.nav.initialize({model: this.models.userManager.facebookUser});
+        // this.views.nav.initialize({model: this.models.userManager.facebookUser});
+        // this.views.nav.render();
       }
 
       // If the Xbox login exists, then initialize it with the new Xbox user

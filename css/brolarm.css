@@ -18,13 +18,12 @@ body {
 
 .gamer-profile {
   padding: 10px 0px 10px 0px;
-  /*background-color: #333;*/
   color: #fff;
 }
 
 .login-form {
-  width: 330px;
-  padding: 15px;
+  padding-top: 20px;
+  width: 342px;
   margin: 0 auto;
 }
 
@@ -74,37 +73,71 @@ body {
   margin-bottom: 0px;
 }
 
+.gamertag-nav {
+  color: #fff;
+  width: 200px;
+  margin-top: 0px;
+}
+
 .gamer-presence {
   color: #808080;
 }
 
-#nav-container {
-  display: none;
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+  color: #fff;
+  background: none;
+  border-color: #50b818;
+  border-width: 2px;
+  border-radius: 0px;
 }
 
-#logo-splash {
+.btn.disabled:hover,
+.btn.disabled:focus,
+.btn.disabled:active,
+.btn.disabled.active,
+.btn[disabled]:hover,
+.btn[disabled]:focus,
+.btn[disabled]:active,
+.btn[disabled].active,
+fieldset[disabled] .btn:hover,
+fieldset[disabled] .btn:focus,
+fieldset[disabled] .btn:active,
+fieldset[disabled] .btn.active {
+  color: #fff;
+  background: none;
+  border-color: #333;
+  border-width: 2px;
+  border-radius: 0px;
+}
+
+.form-group {
+  margin-top: 20px;
+}
+
+.form-control {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+}
+
+#nav-container {
+  /*display: none;*/
+}
+
+#fb-profile-pic {
+  /*display: none;*/
+}
+
+#fb-login-form {
   width: 342px;
   padding-top: 60px;
   margin: 0 auto;
 }
 
-#fb-login {
-  width: 158px;
-  padding-top: 20px;
-  margin: 0 auto;
-}
-
 #fb-login-button {
-  /*display: none;*/
-}
-
-#fb-logout-button {
-  /*display: none;*/
-  margin-right: 10px;
-}
-
-#fb-profile-pic {
-  display: none;
+  margin-top: 20px;
 }
 
 #xbox-profile {
@@ -136,3 +169,36 @@ body {
 .waiting-circles-play-0{ background-color: #9EC45F; }
 .waiting-circles-play-1{ background-color: #aEd46F; }
 .waiting-circles-play-2{ background-color: #bEe47F; }
+
+/* Checkbox */
+
+input[type=checkbox].css-checkbox {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left: 20px;
+  height: 20px;
+  display: inline-block;
+  line-height: 20px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -20px;
+}
+
+.css-label{
+  background-image:url('../images/checkbox.png');
+}
